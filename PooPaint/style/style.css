@@ -1,0 +1,63 @@
+html{
+    background:linear-gradient( #70e1f5,#ffd194 );
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+
+#contenedorPrincipal{
+    padding: 2%;
+    text-align: center;
+    background-color: antiquewhite;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+#zonaCuadrados{
+    clear: both;
+    border: 1px solid black;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 1500px;
+    background-color: burlywood;
+}
+
+#menuCuadrado{
+    float: right;
+    width: 50%;
+}
+#inputColores{
+    width: 50%;
+    height: 50px;
+}
+#boton{
+    padding: 5%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#colorMuestra{
+    float: left;
+    border: 2px solid black;
+    margin-left: 10%;
+    margin-right: auto;
+    height: 70px;
+    width: 300px;
+    background-color: coral;
+}
+
+
+.cuadrado{
+    float: left;
+    width: 10px;
+    height: 10px;
+    background-color: cornflowerblue;
+}
