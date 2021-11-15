@@ -19,12 +19,9 @@ function gravedad(elemento){
     
     intervalo=setInterval(() => {
         elemento.style.top=(parseInt(elemento.style.top)+Number(20)) + "px";
-        if((parseInt(elemento.style.top)>600)){
+        if((parseInt(elemento.style.top)>rect.bottom-30)){
             clearInterval(intervalo);
-                
         }
     }, 300);
         
-    
-    
 }

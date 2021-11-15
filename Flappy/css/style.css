@@ -45,3 +45,9 @@ body{
     height: 20px;
     background-color: red;
 }
+
+.humano{
+    width: 20px;
+    height: 40px;
+    background-color: blue;
+}
