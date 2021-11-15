@@ -32,10 +32,10 @@ body{
 #cuadradoPrueba{
     position: absolute;
 
-    top: 400px;
-    left: 1000px;
+    top: 200px;
+    left: 600px;
 
-    width: 5%;
-    height: 5%;
+    width: 75px;
+    height: 75px;
     background-color: blueviolet;
 }
