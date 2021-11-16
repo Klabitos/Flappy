@@ -27,7 +27,7 @@ function comprobarMovimiento(evento){
 
 function comprobarBomba(evento){
     if(evento.keyCode=="32"){
-        bomba();
+        bombaFuncionalidad();
     }
 }
 

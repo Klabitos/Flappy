@@ -1,4 +1,4 @@
-function bomba(){
+function bombaFuncionalidad(){
     generarBomba();
 }
 
@@ -13,15 +13,30 @@ function generarBomba(){
     gravedad(bombaCreada);
 }
 
-function gravedad(elemento){
+function gravedad(bomba){
     let rect = pantalla.getBoundingClientRect();
     let intervalo;
     
     intervalo=setInterval(() => {
-        elemento.style.top=(parseInt(elemento.style.top)+Number(10)) + "px";
-        if((parseInt(elemento.style.top)>rect.bottom-27)){
+        bomba.style.top=(parseInt(bomba.style.top)+Number(10)) + "px";
+        if((parseInt(bomba.style.top)>rect.bottom-27)){
             clearInterval(intervalo);
+            explotar(bomba);
         }
     }, 50);
         
+}
+
+
+function explotar(bomba){
+    let rect = pantalla.getBoundingClientRect();
+    bomba.classList.replace("bomba","bomba_explosion")
+    bomba.style.top=(parseInt(bomba.style.top)-Number(50)) + "px";
+    setTimeout(() => {
+        bomba.style.opacity="0.5";
+    }, 500);
+    setTimeout(() => {
+        bomba.style.opacity="0";
+        bomba.remove();
+    }, 1000);
 }

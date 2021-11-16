@@ -39,11 +39,20 @@ body{
     background-color: blueviolet;
 }
 
+.bomba_explosion{
+    width: 100px;
+    height: 100px;
+    background-image:url(../img/bomba/Explosion.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .bomba{
     width: 20px;
     height: 20px;
-    background-color: red;
-    background-image:url(../img/bomba/Explosion.png);
+    background-image:url(../img/bomba/rocket.png);
+    transform:rotate(150deg); 
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .humano{
