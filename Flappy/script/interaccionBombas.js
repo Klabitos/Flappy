@@ -59,7 +59,6 @@ function choqueNaveSuelo(){
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
     for(let i=0; i<listaHumanos.length; i++){
-        console.log(bomba.style.left);
         if(parseInt(listaHumanos[i].style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].style.left)<parseInt(bomba.style.left)+Number(100)){
             listaHumanos[i].remove();
             listaHumanos.splice(i,1);
