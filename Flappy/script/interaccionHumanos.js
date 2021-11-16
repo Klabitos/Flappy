@@ -36,22 +36,22 @@ function movimientoDerechaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
     let intervaloDerecha;
     intervaloDerecha = setInterval(() => {
-        humano.style.left=(parseInt(humano.style.left)+Number(20)) + "px";
+        humano.style.left=(parseInt(humano.style.left)+Number(5)) + "px";
         if((parseInt(humano.style.left)>rect.right-30)){
             clearInterval(intervaloDerecha);
             movimientoIzquierdaHumano(humano);
         }
-    }, 300);
+    }, 50);
 }
 
 function movimientoIzquierdaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
     let intervaloIzquierda;
     intervaloIzquierda = setInterval(() => {
-        humano.style.left=(parseInt(humano.style.left)-Number(20)) + "px";
-        if(parseInt(humano.style.left)<rect.left){
+        humano.style.left=(parseInt(humano.style.left)-Number(5)) + "px";
+        if(parseInt(humano.style.left)<rect.left+10){
             clearInterval(intervaloIzquierda);
             movimientoDerechaHumano(humano);
         }
-    }, 300);
+    }, 50);
 }
