@@ -18,7 +18,7 @@ function unHumanoNuevo(){
     let humano = document.createElement("div");
     humano.classList.add("humano");
     humano.style.position="absolute";
-    humano.style.top=rect.bottom-40+"px";
+    humano.style.top=rect.bottom-60+"px";
     if((Math.floor((Math.random() * 2) + 1)%2)==0){
         humano.style.left=rect.left+"px";
     }else{
@@ -55,3 +55,4 @@ function movimientoIzquierdaHumano(humano){
         }
     }, 50);
 }
+

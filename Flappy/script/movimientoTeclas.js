@@ -9,6 +9,7 @@ function comprobanteTecla(evento){
 }
 
 function comprobarMovimiento(evento){
+    let rect = pantalla.getBoundingClientRect();
     switch(evento.key.toLowerCase()){
         case "w":
             movimientoArriba(evento);
@@ -18,6 +19,10 @@ function comprobarMovimiento(evento){
             break;
         case "s":
             movimientoAbajo(evento);
+            if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-100){
+                choqueNaveSuelo();
+            }
+            
             break;
         case "d":
             movimientoDerecha(evento);

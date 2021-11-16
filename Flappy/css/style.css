@@ -16,6 +16,10 @@ body{
     border: 1px solid black;
     margin: 5px;
 }
+.cabecera h1{
+    margin-left: 1%;
+}
+
 .pantalla{
     height: 77%;
     border: 1px solid black;
@@ -30,13 +34,14 @@ body{
 
 #cuadradoPrueba{
     position: absolute;
-
     top: 20vw;
     left: 47vw;
-    z-index: 1;
+    z-index: 2;
     width: 75px;
     height: 75px;
-    background-color: blueviolet;
+    background-image:url(../img/nave/nave.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .bomba_explosion{
@@ -47,6 +52,7 @@ body{
     background-size: cover;
 }
 .bomba{
+    z-index: 1;
     width: 20px;
     height: 20px;
     background-image:url(../img/bomba/rocket.png);
@@ -56,7 +62,9 @@ body{
 }
 
 .humano{
-    width: 20px;
-    height: 40px;
-    background-color: blue;
+    width: 60px;
+    height: 100px;
+    background-image: url(../img/humano/caminante.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
