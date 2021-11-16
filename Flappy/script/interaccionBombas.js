@@ -57,17 +57,39 @@ function choqueNaveSuelo(){
 }
 
 function comprobarSiMuerto(bomba){
+    let muertesEstaBomba=0;
     for(let i=0; i<listaHumanos.length; i++){
         console.log(bomba.style.left);
         if(parseInt(listaHumanos[i].style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].style.left)<parseInt(bomba.style.left)+Number(100)){
             listaHumanos[i].remove();
             listaHumanos.splice(i,1);
             puntuacionUnMuerto();
+            muertesEstaBomba++;
         }
     }
+    tripleKillAndSo(muertesEstaBomba);
 }
 function puntuacionUnMuerto(){
     let puntuacionSpan = document.getElementById("puntuacion");
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
     puntuacion.innerText=puntuacionNumero+Number(100);    
+}
+
+function tripleKillAndSo(kills){
+    let textoEnPantalla = document.getElementById("kills")
+    switch(kills){
+        case 1:
+            textoEnPantalla.innerText="Kill";
+            break;
+        case 2:
+            textoEnPantalla.innerText="DOUBLE Kill!";
+            break;
+        case 3:
+            textoEnPantalla.innerText="TRIPLE KILL!!!";
+            dificultad++;
+            break;
+        case 4:
+            textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
+            break;
+    }
 }
