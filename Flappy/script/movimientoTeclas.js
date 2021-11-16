@@ -138,7 +138,7 @@ function movimientoAbajo(evento){
 }
 
 function comprobarChoqueSuelo(){
-    let rect = pantalla.getBoundingClientRect();
+    let rect = pantalla.getBoundingClientRect();    
     if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-80){
         choqueNaveSuelo();
     }

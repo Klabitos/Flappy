@@ -45,16 +45,7 @@ function humanoMuerto(bomba){
     comprobarSiMuerto(bomba);
 }
 
-function choqueNaveSuelo(){
-    let bombaCreada = document.createElement("div");
-    bombaCreada.classList.add("bomba");
-    bombaCreada.style.position="absolute";
-    bombaCreada.style.zIndex=3;
-    bombaCreada.style.left=window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left");
-    bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
-    pantalla.appendChild(bombaCreada);
-    explotar(bombaCreada);
-}
+
 
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
