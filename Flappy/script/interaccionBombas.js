@@ -23,7 +23,7 @@ function gravedad(bomba){
             clearInterval(intervalo);
             explotar(bomba);
         }
-    }, 50);
+    }, 20);
         
 }
 
