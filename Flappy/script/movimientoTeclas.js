@@ -1,3 +1,5 @@
+
+
 document.body.addEventListener("keydown", comprobanteTecla);
 document.body.addEventListener("keyup", comprobanteTeclaLevantar);
 var cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 

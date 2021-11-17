@@ -1,3 +1,6 @@
+
+
+
 function bombaFuncionalidad(){
     generarBomba();
 }
@@ -48,54 +51,16 @@ function humanoMuerto(bomba){
 
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
-    let div;
     for(let i=0; i<listaHumanos.length; i++){
         if(parseInt(listaHumanos[i].obtenerDiv().style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(100)){
             listaHumanos[i].obtenerDiv().remove();
-            delete listaHumanos[i];
+            listaHumanos[i]=null;
             listaHumanos.splice(i,1);
-            puntuacionUnMuerto();
+            aumentarPuntuacionUnMuerto();
             muertesEstaBomba++;
         }
     }
     tripleKillAndSo(muertesEstaBomba);
 }
-function puntuacionUnMuerto(){
-    let puntuacionSpan = document.getElementById("puntuacion");
-    let puntuacionNumero = parseInt(puntuacionSpan.innerText);
-    puntuacion.innerText=puntuacionNumero+Number(100); 
-    if(parseInt(puntuacionSpan.innerText)%1000==0){
-        aumentoDificultad();
-    }   
-}
 
-function tripleKillAndSo(kills){
-    let textoEnPantalla = document.getElementById("kills");
-    
-    switch(kills){
-        case 1:
-            textoEnPantalla.innerText="Kill";
-            textoEnPantalla.className="kill";
-            break;
-        case 2:
-            textoEnPantalla.innerText="DOUBLE Kill!";
-            textoEnPantalla.className="dobleKill";
-            break;
-        case 3:
-            textoEnPantalla.innerText="TRIPLE KILL!!!";
-            textoEnPantalla.className="tripleKill";
-            aumentoDificultad();
-            break;
-        case 4:
-            textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
-            textoEnPantalla.className="cuadraKill";
-            aumentoDificultad();
-            break;
-    }
-}
 
-function aumentoDificultad(){
-    let dificultadPantalla = document.getElementById("dificultad");
-    dificultad++;
-    dificultadPantalla.innerText=dificultad;
-}
