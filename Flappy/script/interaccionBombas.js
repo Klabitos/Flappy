@@ -7,7 +7,7 @@ function generarBomba(){
     bombaCreada.classList.add("bomba");
     bombaCreada.style.position="absolute";
     bombaCreada.style.zIndex=3;
-    bombaCreada.style.left=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"))+Number(20)+"px";
+    bombaCreada.style.left=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"))+"px";
     bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
     pantalla.appendChild(bombaCreada);
     gravedad(bombaCreada);
@@ -23,7 +23,7 @@ function gravedad(bomba){
             clearInterval(intervalo);
             explotar(bomba);
         }
-    }, 50);
+    }, 20);
         
 }
 
@@ -34,11 +34,11 @@ function explotar(bomba){
     humanoMuerto(bomba);
     setTimeout(() => {
         bomba.style.opacity="0.5";
-    }, 500);
+    }, 300);
     setTimeout(() => {
         bomba.style.opacity="0";
         bomba.remove();
-    }, 1000);
+    }, 600);
 }
 
 function humanoMuerto(bomba){
@@ -61,24 +61,40 @@ function comprobarSiMuerto(bomba){
 function puntuacionUnMuerto(){
     let puntuacionSpan = document.getElementById("puntuacion");
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
-    puntuacion.innerText=puntuacionNumero+Number(100);    
+    puntuacion.innerText=puntuacionNumero+Number(100); 
+    if(parseInt(puntuacionSpan.innerText)%1000==0){
+        console.log(parseInt(puntuacionSpan.innerText));
+        aumentoDificultad();
+    }   
 }
 
 function tripleKillAndSo(kills){
-    let textoEnPantalla = document.getElementById("kills")
+    let textoEnPantalla = document.getElementById("kills");
+    
     switch(kills){
         case 1:
             textoEnPantalla.innerText="Kill";
+            textoEnPantalla.className="kill";
             break;
         case 2:
             textoEnPantalla.innerText="DOUBLE Kill!";
+            textoEnPantalla.className="dobleKill";
             break;
         case 3:
             textoEnPantalla.innerText="TRIPLE KILL!!!";
-            dificultad++;
+            textoEnPantalla.className="tripleKill";
+            aumentoDificultad();
             break;
         case 4:
             textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
+            textoEnPantalla.className="cuadraKill";
+            aumentoDificultad();
             break;
     }
+}
+
+function aumentoDificultad(){
+    let dificultadPantalla = document.getElementById("dificultad");
+    dificultad++;
+    dificultadPantalla.innerText=dificultad;
 }
