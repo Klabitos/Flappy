@@ -30,6 +30,8 @@ body{
 }
 
 .footer h2{
+
+    background-color: goldenrod;
     width: 25%;
     height: 60%;
     margin-left: 6%;
@@ -37,6 +39,7 @@ body{
     text-align: center;
 }
 .cabecera h1{
+    background-color: khaki;
     width: 25%;
     height: 50%;
     margin-left: 6%;

@@ -22,7 +22,7 @@ function unHumanoNuevo(){
     if((Math.floor((Math.random() * 2) + 1)%2)==0){
         humano.style.left=rect.left+"px";
     }else{
-        humano.style.left=rect.right+"px";
+        humano.style.left=rect.right-Number(80)+"px";
     }
     pantalla.appendChild(humano);
     movimientoHumanos(humano);
@@ -37,7 +37,7 @@ function movimientoDerechaHumano(humano){
     let intervaloDerecha;
     intervaloDerecha = setInterval(() => {
         humano.style.left=(parseInt(humano.style.left)+Number(5)) + "px";
-        if((parseInt(humano.style.left)>rect.right-30)){
+        if((parseInt(humano.style.left)>rect.right-50)){
             clearInterval(intervaloDerecha);
             movimientoIzquierdaHumano(humano);
         }
