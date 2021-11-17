@@ -46,7 +46,6 @@ function humanoMuerto(bomba){
 }
 
 
-
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
     for(let i=0; i<listaHumanos.length; i++){
