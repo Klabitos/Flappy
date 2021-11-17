@@ -36,8 +36,8 @@ function comprobarGenerarHumanos(){
     }
 }
 function unHumanoNuevo(){
-    let rect = pantalla.getBoundingClientRect();
-    let humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",1,document.createElement("div"));
+    let rect = pantalla.getBoundingClientRect(); //TODO usar la velocidad y la aparicion
+    let humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"));
     humano.darClase();
     humano.obtenerDiv().style.top=rect.bottom-60+"px";
     if((Math.floor((Math.random() * 2) + 1)%2)==0){
