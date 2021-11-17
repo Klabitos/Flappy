@@ -7,7 +7,7 @@ function generarBomba(){
     bombaCreada.classList.add("bomba");
     bombaCreada.style.position="absolute";
     bombaCreada.style.zIndex=3;
-    bombaCreada.style.left=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"))+Number(20)+"px";
+    bombaCreada.style.left=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"))+"px";
     bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
     pantalla.appendChild(bombaCreada);
     gravedad(bombaCreada);
