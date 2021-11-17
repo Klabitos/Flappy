@@ -14,12 +14,17 @@ body{
 .cabecera{
     display: flex;
     flex-direction: row;
+    align-items: center;
     height: 10%;
     border: 1px solid black;
     margin: 5px;
 }
 .cabecera h1{
-    margin-left: 1%;
+    width: 25%;
+    height: 50%;
+    margin-left: 6%;
+    border: 1px solid black;
+    text-align: center;
 }
 
 .pantalla{
@@ -74,6 +79,3 @@ body{
     background-size: contain;
 }
 
-#kills{
-    margin-left: 25%;
-}

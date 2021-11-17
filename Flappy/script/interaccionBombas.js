@@ -71,11 +71,16 @@ function comprobarSiMuerto(bomba){
 function puntuacionUnMuerto(){
     let puntuacionSpan = document.getElementById("puntuacion");
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
-    puntuacion.innerText=puntuacionNumero+Number(100);    
+    puntuacion.innerText=puntuacionNumero+Number(100); 
+    if(parseInt(puntuacionSpan.innerText)%1000==0){
+        console.log(parseInt(puntuacionSpan.innerText));
+        aumentoDificultad();
+    }   
 }
 
 function tripleKillAndSo(kills){
-    let textoEnPantalla = document.getElementById("kills")
+    let textoEnPantalla = document.getElementById("kills");
+    
     switch(kills){
         case 1:
             textoEnPantalla.innerText="Kill";
@@ -85,10 +90,17 @@ function tripleKillAndSo(kills){
             break;
         case 3:
             textoEnPantalla.innerText="TRIPLE KILL!!!";
-            dificultad++;
+            aumentoDificultad();
             break;
         case 4:
             textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
+            aumentoDificultad();
             break;
     }
+}
+
+function aumentoDificultad(){
+    let dificultadPantalla = document.getElementById("dificultad");
+    dificultad++;
+    dificultadPantalla.innerText=dificultad;
 }
