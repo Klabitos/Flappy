@@ -15,7 +15,6 @@ var movAbajActivo=false;
 var intervaloAbaj;
 
 function comprobanteTecla(evento){
-    keyLog(evento);
     comprobarMovimiento(evento);
     comprobarBomba(evento);
 }
@@ -64,10 +63,6 @@ function comprobarBomba(evento){
     }
 }
 
-function keyLog(evento){
-    let pLog = document.getElementById("keyLog");
-    pLog.innerText=`TECLA: ${evento.key} y CÓDIGO: ${evento.keyCode}`;
-}
 
 function movimientoIzq(){
     let rect = pantalla.getBoundingClientRect(); //PARA QUE SEA RELATIVO A LA VISTA

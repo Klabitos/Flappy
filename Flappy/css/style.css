@@ -19,6 +19,23 @@ body{
     border: 1px solid black;
     margin: 5px;
 }
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10%;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.footer h2{
+    width: 25%;
+    height: 60%;
+    margin-left: 6%;
+    border: 1px solid black;
+    text-align: center;
+}
 .cabecera h1{
     width: 25%;
     height: 50%;
