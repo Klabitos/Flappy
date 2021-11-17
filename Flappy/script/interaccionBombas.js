@@ -49,8 +49,8 @@ function humanoMuerto(bomba){
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
     for(let i=0; i<listaHumanos.length; i++){
-        if(parseInt(listaHumanos[i].style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].style.left)<parseInt(bomba.style.left)+Number(100)){
-            listaHumanos[i].remove();
+        if(parseInt(listaHumanos[i].obtenerDiv().style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(100)){
+            delete listaHumanos[i];
             listaHumanos.splice(i,1);
             puntuacionUnMuerto();
             muertesEstaBomba++;

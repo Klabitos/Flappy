@@ -2,6 +2,28 @@ var listaHumanos = [];
 var dificultad = 0;
 var seedHumanos;
 
+class Humano{
+    constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div){
+        this.velocidad = velocidad;
+        this.fondoHaciaIzquierda = fondoHaciaIzquierda;
+        this.fondoHaciaDerecha = fondoHaciaDerecha;
+        this.aparicion = aparicion;
+        this.div = div;
+    }
+    obtenerPosicionIzquierda(){
+        return this.div.style.left;
+    }
+    obtenerPosicionAlta(){
+        return this.div.style.top;
+    }
+    darClase(){
+        this.div.classList.add("humano");
+    }
+    obtenerDiv(){
+        return this.div;
+    }
+}
+
 
 function generacionHumanos(){
     seedHumanos = setInterval(() => {
@@ -15,17 +37,18 @@ function comprobarGenerarHumanos(){
 }
 function unHumanoNuevo(){
     let rect = pantalla.getBoundingClientRect();
-    let humano = document.createElement("div");
-    humano.classList.add("humano");
-    humano.style.position="absolute";
-    humano.style.top=rect.bottom-60+"px";
+    let humano = new Humano(50,"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",1,document.createElement("div"));
+    humano.darClase();
+    humano.obtenerDiv().style.top=rect.bottom-60+"px";
     if((Math.floor((Math.random() * 2) + 1)%2)==0){
-        humano.style.left=rect.left+"px";
+        humano.obtenerDiv().style.left=rect.left+"px";
+        humano.obtenerDiv().style.backgroundImage=humano.fondoHaciaDerecha;
     }else{
-        humano.style.left=rect.right-Number(80)+"px";
+        humano.obtenerDiv().style.left=rect.right-Number(80)+"px";
+        humano.obtenerDiv().style.backgroundImage=humano.fondoHaciaIzquierda;
     }
-    pantalla.appendChild(humano);
-    movimientoHumanos(humano);
+    pantalla.appendChild(humano.obtenerDiv());
+    movimientoHumanos(humano.obtenerDiv());
     listaHumanos.push(humano);
 }
 function movimientoHumanos(humano){

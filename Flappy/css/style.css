@@ -94,6 +94,7 @@ body{
 }
 
 .humano{
+    position: absolute;
     width: 60px;
     height: 100px;
     background-image: url(../img/humano/caminante.png);
