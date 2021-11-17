@@ -48,8 +48,10 @@ function humanoMuerto(bomba){
 
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
+    let div;
     for(let i=0; i<listaHumanos.length; i++){
         if(parseInt(listaHumanos[i].obtenerDiv().style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(100)){
+            listaHumanos[i].obtenerDiv().remove();
             delete listaHumanos[i];
             listaHumanos.splice(i,1);
             puntuacionUnMuerto();
@@ -63,7 +65,6 @@ function puntuacionUnMuerto(){
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
     puntuacion.innerText=puntuacionNumero+Number(100); 
     if(parseInt(puntuacionSpan.innerText)%1000==0){
-        console.log(parseInt(puntuacionSpan.innerText));
         aumentoDificultad();
     }   
 }

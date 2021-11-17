@@ -22,6 +22,9 @@ class Humano{
     obtenerDiv(){
         return this.div;
     }
+    obtenerVelocidad(){
+        return 100-this.velocidad;
+    }
 }
 
 
@@ -37,10 +40,10 @@ function comprobarGenerarHumanos(){
 }
 function unHumanoNuevo(){
     let rect = pantalla.getBoundingClientRect(); //TODO usar la velocidad y la aparicion
-    let humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"));
+    let humano = tipoDeHumano();
     humano.darClase();
     humano.obtenerDiv().style.top=rect.bottom-60+"px";
-    if((Math.floor((Math.random() * 2) + 1)%2)==0){
+    if(humano.aparicion==1){
         humano.obtenerDiv().style.left=rect.left+"px";
         humano.obtenerDiv().style.backgroundImage=humano.fondoHaciaDerecha;
     }else{
@@ -48,35 +51,64 @@ function unHumanoNuevo(){
         humano.obtenerDiv().style.backgroundImage=humano.fondoHaciaIzquierda;
     }
     pantalla.appendChild(humano.obtenerDiv());
-    movimientoHumanos(humano.obtenerDiv());
+    movimientoHumanos(humano);
     listaHumanos.push(humano);
 }
+
+function tipoDeHumano(){
+    let numeroAleatorio = randomIntFromInterval(1,4);
+    let humano;
+    switch(numeroAleatorio){
+        case 1:
+            humano = new Humano(randomIntFromInterval(45,65),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"));
+            break;
+        case 2:
+            humano = new Humano(randomIntFromInterval(35,45),"url(../img/humano/chicaTriste.png","url(../img/humano/chicaTriste2.png",randomIntFromInterval(1,2),document.createElement("div"));
+            break;
+        case 3:
+            humano = new Humano(randomIntFromInterval(75,80),"url(../img/humano/corredor.png","url(../img/humano/corredor2.png",randomIntFromInterval(1,2),document.createElement("div"));
+            break;
+        case 4:
+            humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"));
+            break;
+        case 5:
+            humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"));
+            break;    
+    }
+    return humano;
+}
+
 function movimientoHumanos(humano){
-    movimientoDerechaHumano(humano);
+    if(humano.aparicion==1){
+        movimientoDerechaHumano(humano);
+    }else{
+        movimientoIzquierdaHumano(humano);
+    }
+    
 }
 
 function movimientoDerechaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
     let intervaloDerecha;
     intervaloDerecha = setInterval(() => {
-        humano.style.left=(parseInt(humano.style.left)+Number(5)) + "px";
-        if((parseInt(humano.style.left)>rect.right-50)){
+        humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)+Number(5)) + "px";
+        if((parseInt(humano.obtenerDiv().style.left)>rect.right-50)){
             clearInterval(intervaloDerecha);
             movimientoIzquierdaHumano(humano);
         }
-    }, 50);
+    }, humano.obtenerVelocidad());
 }
 
 function movimientoIzquierdaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
     let intervaloIzquierda;
     intervaloIzquierda = setInterval(() => {
-        humano.style.left=(parseInt(humano.style.left)-Number(5)) + "px";
-        if(parseInt(humano.style.left)<rect.left+10){
+        humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)-Number(5)) + "px";
+        if(parseInt(humano.obtenerDiv().style.left)<rect.left+10){
             clearInterval(intervaloIzquierda);
             movimientoDerechaHumano(humano);
         }
-    }, 50);
+    },  humano.obtenerVelocidad());
 }
 
 
