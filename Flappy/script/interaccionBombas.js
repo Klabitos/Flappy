@@ -84,16 +84,20 @@ function tripleKillAndSo(kills){
     switch(kills){
         case 1:
             textoEnPantalla.innerText="Kill";
+            textoEnPantalla.className="kill";
             break;
         case 2:
             textoEnPantalla.innerText="DOUBLE Kill!";
+            textoEnPantalla.className="dobleKill";
             break;
         case 3:
             textoEnPantalla.innerText="TRIPLE KILL!!!";
+            textoEnPantalla.className="tripleKill";
             aumentoDificultad();
             break;
         case 4:
             textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
+            textoEnPantalla.className="cuadraKill";
             aumentoDificultad();
             break;
     }
