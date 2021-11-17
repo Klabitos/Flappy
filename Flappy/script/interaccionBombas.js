@@ -34,11 +34,11 @@ function explotar(bomba){
     humanoMuerto(bomba);
     setTimeout(() => {
         bomba.style.opacity="0.5";
-    }, 500);
+    }, 300);
     setTimeout(() => {
         bomba.style.opacity="0";
         bomba.remove();
-    }, 1000);
+    }, 600);
 }
 
 function humanoMuerto(bomba){

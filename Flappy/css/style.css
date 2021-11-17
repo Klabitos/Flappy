@@ -55,11 +55,13 @@ body{
 }
 
 .bomba_explosion{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-image:url(../img/bomba/Explosion.png);
     background-repeat: no-repeat;
     background-size: cover;
+    animation-name: explosionAnimacion;
+    animation-duration: 0.7s;
 }
 .bomba{
     z-index: 1;
@@ -95,3 +97,15 @@ body{
     font: 1.5em Georgia, "Bitstream Charter", "URW Bookman L", "Century Schoolbook L", serif;
 }
 
+
+@keyframes explosionAnimacion {
+    0%   {transform: scale(2, 2);}
+    10% {transform: scale(0.5, 0.5);}
+    25%   {transform: scale(2, 2);}
+    40% {transform: scale(0.5, 0.5);}
+    60% {transform: scale(1, 1);}
+    70%   {transform: scale(2, 2);}
+    80% {transform: scale(0.4, 0.4);}
+    90%   {transform: scale(1, );}
+    100% {transform: scale(0, 0);}
+  }
