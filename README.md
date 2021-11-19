@@ -1,8 +1,8 @@
 # MiniProyectos
 
-##TODO
+## TODO
 
-###Funcional:
+### Funcional:
 -BarraVida.:x:\
 -BalasDisponibles.:x:\
 -UsarUseStrict.:x:\
@@ -11,7 +11,7 @@
 
 
 
-###Visual:\
+### Visual:\
 -BarraVida:x:\
 -MejorarNaveVisualmente.:x:\
 -MejorarTodoVisualmente.:x:\
