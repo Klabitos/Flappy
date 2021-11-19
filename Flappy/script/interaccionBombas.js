@@ -34,7 +34,8 @@ function explotar(bomba){
     let rect = pantalla.getBoundingClientRect();
     bomba.classList.replace("bomba","bomba_explosion")
     bomba.style.top=(parseInt(bomba.style.top)-Number(50)) + "px";
-    humanoMuerto(bomba);
+    bomba.style.left=(parseInt(bomba.style.left)-Number(20)) + "px";
+    comprobarSiMuerto(bomba);
     setTimeout(() => {
         bomba.style.opacity="0.5";
     }, 300);
@@ -44,15 +45,15 @@ function explotar(bomba){
     }, 600);
 }
 
-function humanoMuerto(bomba){
-    comprobarSiMuerto(bomba);
-}
+
+  
+
 
 
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
     for(let i=0; i<listaHumanos.length; i++){
-        if(parseInt(listaHumanos[i].obtenerDiv().style.left)>parseInt(bomba.style.left)-Number(100) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(100)){
+        if((parseInt(listaHumanos[i].obtenerDiv().style.left)+Number(30)>parseInt(bomba.style.left) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(90)) ||(parseInt(listaHumanos[i].obtenerDiv().style.left)+Number(60)>parseInt(bomba.style.left) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(90)) ){
             listaHumanos[i].obtenerDiv().remove();
             listaHumanos[i]=null;
             listaHumanos.splice(i,1);
