@@ -5,13 +5,13 @@
 ### Funcional:
 -BarraVida.:x: \
 -BalasDisponibles.:x: \
--UsarUseStrict.:x: \
+-UsarUseStrict.:x: 
 -Policia y estrellas.:x: 
 
 
 
 
-### Visual: \
+### Visual: 
 -BarraVida:x:\
 -MejorarNaveVisualmente.:x: \
 -MejorarTodoVisualmente.:x: \
