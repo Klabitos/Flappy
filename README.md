@@ -5,7 +5,7 @@
 ### Funcional:
 -BarraVida.:x: \
 -BalasDisponibles.:x: \
--UsarUseStrict.:x: 
+-UsarUseStrict.:x: \ 
 -Policia y estrellas.:x: \
 
 
