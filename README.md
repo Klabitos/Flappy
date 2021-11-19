@@ -6,7 +6,7 @@
 -BarraVida.:x: \
 -BalasDisponibles.:x: \
 -UsarUseStrict.:x: \
--Policia y estrellas.:x: \
+-Policia y estrellas.:x: 
 
 
 
@@ -15,4 +15,4 @@
 -BarraVida:x:\
 -MejorarNaveVisualmente.:x: \
 -MejorarTodoVisualmente.:x: \
--Cambios escenario.:x: \
+-Cambios escenario.:x: 
