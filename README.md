@@ -6,7 +6,7 @@
 -BarraVida.:x: \
 -BalasDisponibles.:x: \
 -UsarUseStrict.:x: 
--Policia y estrellas.:x: 
+-Policia y estrellas.:x: \
 
 
 
