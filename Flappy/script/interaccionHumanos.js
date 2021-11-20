@@ -46,7 +46,7 @@ class Humano{
 function generacionHumanos(){
     seedHumanos = setInterval(() => {
         comprobarGenerarHumanos();
-    }, 5000);
+    }, 1000);
 }
 function comprobarGenerarHumanos(){
     if(listaHumanos.length<dificultad+Number(10)){
@@ -129,11 +129,7 @@ function movimientoIzquierdaHumano(humano){
 
 
 function escapar(humano){
-    //console.log(listaHumanos);
-    //console.log("Ha escapado y deberia existir: "+humano.obtenerDiv());
-    //console.log("Ha escapado con esta left: "+humano.obtenerDiv().style.left+ " y esta velocidad: "+humano.velocidad);
     humano.obtenerDiv().remove();
-    //console.log("Ha escapado y no deberia existir: "+humano.obtenerDiv());
     delete humano;
     for(var i = 0; i < listaHumanos.length; i++) {
         if (listaHumanos[i].idHumano == humano.idHumano) {

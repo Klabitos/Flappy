@@ -1,4 +1,5 @@
 var dificultad = 0;
+var numeroDisparosTotalesDisponibles = 2;
 
 
 function tripleKillAndSo(kills){
@@ -22,8 +23,14 @@ function tripleKillAndSo(kills){
             textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
             textoEnPantalla.className="cuadraKill";
             aumentoDificultad();
+            aumentarBalasDisponibles();
             break;
     }
+}
+function aumentarBalasDisponibles(){
+    let numeroDisparosDisponibles = document.getElementById("balas");
+    numeroDisparosTotalesDisponibles++;
+    numeroDisparosDisponibles.innerText=numeroDisparosTotalesDisponibles;
 }
 
 function aumentoDificultad(){

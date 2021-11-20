@@ -69,7 +69,7 @@ function comprobarBomba(evento){
 function movimientoIzq(){
     let rect = pantalla.getBoundingClientRect(); //PARA QUE SEA RELATIVO A LA VISTA
     let topVal;
-    if(!movIzqActivo){ //Para que solo entre una vez
+    if(!movIzqActivo){ //Para que solo entre una vez con cada primer keydown
         movIzqActivo=true;
         intervaloIzq=setInterval(() => {
             topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"),10);
@@ -86,7 +86,7 @@ function movimientoIzq(){
 function movimientoDerecha(){
     let rect = pantalla.getBoundingClientRect();
     var topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"),10);
-    if(!movDerActivo){ //Para que solo entre una vez
+    if(!movDerActivo){ //Para que solo entre una vez con cada primer keydown
         movDerActivo=true;
         intervaloDer=setInterval(() => {
             topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"),10);
@@ -134,19 +134,3 @@ function movimientoAbajo(evento){
     }
 }
 
-function comprobarChoqueSuelo(){
-    let rect = pantalla.getBoundingClientRect();    
-    if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-80){
-        choqueNaveSuelo();
-    }
-}
-function choqueNaveSuelo(){
-    let bombaCreada = document.createElement("div");
-    bombaCreada.classList.add("bomba");
-    bombaCreada.style.position="absolute";
-    bombaCreada.style.zIndex=3;
-    bombaCreada.style.left=window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left");
-    bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
-    pantalla.appendChild(bombaCreada);
-    explotar(bombaCreada);
-}

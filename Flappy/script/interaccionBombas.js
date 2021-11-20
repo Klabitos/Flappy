@@ -1,19 +1,20 @@
 
-
+var numeroBombasEnElAire=0;
 
 function bombaFuncionalidad(){
     generarBomba();
 }
 
 function generarBomba(){
-    let bombaCreada = document.createElement("div");
-    bombaCreada.classList.add("bomba");
-    bombaCreada.style.position="absolute";
-    bombaCreada.style.zIndex=3;
-    bombaCreada.style.left=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"))+"px";
-    bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
-    pantalla.appendChild(bombaCreada);
-    gravedad(bombaCreada);
+    if(numeroBombasEnElAire<numeroDisparosTotalesDisponibles){
+        let bombaCreada = document.createElement("div");
+        bombaCreada.classList.add("bomba");
+        bombaCreada.style.left=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"))+"px";
+        bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
+        pantalla.appendChild(bombaCreada);
+        numeroBombasEnElAire++;
+        gravedad(bombaCreada);
+    }
 }
 
 function gravedad(bomba){
@@ -31,7 +32,7 @@ function gravedad(bomba){
 }
 
 function explotar(bomba){
-    let rect = pantalla.getBoundingClientRect();
+    numeroBombasEnElAire--;
     bomba.classList.replace("bomba","bomba_explosion")
     bomba.style.top=(parseInt(bomba.style.top)-Number(50)) + "px";
     bomba.style.left=(parseInt(bomba.style.left)-Number(20)) + "px";
@@ -59,13 +60,29 @@ function comprobarSiMuerto(bomba){
             humano.obtenerDiv().remove();
             delete humano;
             listaHumanos.splice(i,1);
-            clearInterval(humano.obtenerIntervaloMovimiento());
+            clearInterval(humano.obtenerIntervaloMovimiento()); //para que se pare lo establecido en el intervalo (el escapar)
+
             aumentarPuntuacionUnMuerto();
             muertesEstaBomba++;
-            console.log(listaHumanos);
         }
     }
     tripleKillAndSo(muertesEstaBomba);
 }
 
 
+function comprobarChoqueSuelo(){
+    let rect = pantalla.getBoundingClientRect();    
+    if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-80){
+        choqueNaveSuelo();
+    }
+}
+function choqueNaveSuelo(){
+    let bombaCreada = document.createElement("div");
+    bombaCreada.classList.add("bomba");
+    bombaCreada.style.position="absolute";
+    bombaCreada.style.zIndex=3;
+    bombaCreada.style.left=window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left");
+    bombaCreada.style.top=parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))+Number(50)+"px";
+    pantalla.appendChild(bombaCreada);
+    explotar(bombaCreada);
+}

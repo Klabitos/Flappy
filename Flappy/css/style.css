@@ -75,6 +75,7 @@ body{
 }
 
 .bomba_explosion{
+    position: absolute;
     width: 80px;
     height: 80px;
     background-image:url(../img/bomba/Explosion.png);
@@ -84,6 +85,7 @@ body{
     animation-duration: 0.7s;
 }
 .bomba{
+    position: absolute;
     z-index: 1;
     width: 20px;
     height: 20px;
