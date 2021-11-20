@@ -52,13 +52,17 @@ function explotar(bomba){
 
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
+    let humano;
     for(let i=0; i<listaHumanos.length; i++){
-        if((parseInt(listaHumanos[i].obtenerDiv().style.left)+Number(30)>parseInt(bomba.style.left) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(90)) ||(parseInt(listaHumanos[i].obtenerDiv().style.left)+Number(60)>parseInt(bomba.style.left) && parseInt(listaHumanos[i].obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(90)) ){
-            listaHumanos[i].obtenerDiv().remove();
-            listaHumanos[i]=null;
+        humano=listaHumanos[i];
+        if((parseInt(humano.obtenerDiv().style.left)+Number(30)>parseInt(bomba.style.left) && parseInt(humano.obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(90)) ||(parseInt(humano.obtenerDiv().style.left)+Number(60)>parseInt(bomba.style.left) && parseInt(humano.obtenerDiv().style.left)<parseInt(bomba.style.left)+Number(90)) ){
+            humano.obtenerDiv().remove();
+            delete humano;
             listaHumanos.splice(i,1);
+            clearInterval(humano.obtenerIntervaloMovimiento());
             aumentarPuntuacionUnMuerto();
             muertesEstaBomba++;
+            console.log(listaHumanos);
         }
     }
     tripleKillAndSo(muertesEstaBomba);

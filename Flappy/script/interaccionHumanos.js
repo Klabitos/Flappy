@@ -17,6 +17,7 @@ class Humano{
         this.aparicion = aparicion;
         this.div = div;
         this.idHumano = idHumano;
+        this.intervalo = 0;
     }
     obtenerPosicionIzquierda(){
         return this.div.style.left;
@@ -33,13 +34,19 @@ class Humano{
     obtenerVelocidad(){
         return 100-this.velocidad;
     }
+    establecerIntervaloMovimiento(intervalo){
+        this.intervalo=intervalo;
+    }
+    obtenerIntervaloMovimiento(){
+        return this.intervalo;
+    }
 }
 
 
 function generacionHumanos(){
     seedHumanos = setInterval(() => {
         comprobarGenerarHumanos();
-    }, 1000);
+    }, 5000);
 }
 function comprobarGenerarHumanos(){
     if(listaHumanos.length<dificultad+Number(10)){
@@ -99,30 +106,34 @@ function movimientoHumanos(humano){
 function movimientoDerechaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
     let intervaloDerecha;
-    intervaloDerecha = setInterval(() => {
+    humano.establecerIntervaloMovimiento(setInterval(() => {
         humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)+Number(5)) + "px";
         if((parseInt(humano.obtenerDiv().style.left)>rect.right-Number(40))){
-            clearInterval(intervaloDerecha);
+            clearInterval(humano.obtenerIntervaloMovimiento());
             escapar(humano);
         }
-    }, humano.obtenerVelocidad());
+    }, humano.obtenerVelocidad()));
 }
 
 function movimientoIzquierdaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
     let intervaloIzquierda;
-    intervaloIzquierda = setInterval(() => {
+    humano.establecerIntervaloMovimiento(setInterval(() => {
         humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)-Number(5)) + "px";
         if(parseInt(humano.obtenerDiv().style.left)<rect.left){
-            clearInterval(intervaloIzquierda);
+            clearInterval(humano.obtenerIntervaloMovimiento());
             escapar(humano);
         }
-    },  humano.obtenerVelocidad());
+    },  humano.obtenerVelocidad()));
 }
 
 
 function escapar(humano){
+    //console.log(listaHumanos);
+    //console.log("Ha escapado y deberia existir: "+humano.obtenerDiv());
+    //console.log("Ha escapado con esta left: "+humano.obtenerDiv().style.left+ " y esta velocidad: "+humano.velocidad);
     humano.obtenerDiv().remove();
+    //console.log("Ha escapado y no deberia existir: "+humano.obtenerDiv());
     delete humano;
     for(var i = 0; i < listaHumanos.length; i++) {
         if (listaHumanos[i].idHumano == humano.idHumano) {
@@ -130,7 +141,7 @@ function escapar(humano){
             break;
         }
     }
-    
+disminuirPuntuacion()
 }
 
 
