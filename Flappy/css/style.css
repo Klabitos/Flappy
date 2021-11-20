@@ -124,6 +124,14 @@ body{
     font-style:italic;
 }
 
+#balasImagen{
+    width: 200%;
+    height: 200%;
+    background-image: url(../img/bomba/bombaParaIndex.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 @keyframes explosionAnimacion {
     0%   {transform: scale(2, 2);}
