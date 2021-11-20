@@ -4,7 +4,7 @@
 
 ### Funcional:
 -BarraVida.:x: \
--BalasDisponibles.:x: \
+-BalasDisponibles.:heavy_check_mark: \
 -UsarUseStrict.:x: \
 -Policia y estrellas.:x: 
 
