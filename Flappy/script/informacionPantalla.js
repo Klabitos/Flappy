@@ -1,4 +1,4 @@
-var dificultad = 0;
+var velocidad = 1;
 var numeroDisparosTotalesDisponibles = 2;
 
 
@@ -17,12 +17,12 @@ function tripleKillAndSo(kills){
         case 3:
             textoEnPantalla.innerText="TRIPLE KILL!!!";
             textoEnPantalla.className="tripleKill";
-            aumentoDificultad();
+            aumentoVelocidad();
             break;
         case 4:
             textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
             textoEnPantalla.className="cuadraKill";
-            aumentoDificultad();
+            aumentoVelocidad();
             aumentarBalasDisponibles();
             break;
     }
@@ -33,10 +33,10 @@ function aumentarBalasDisponibles(){
     numeroDisparosDisponibles.innerText=numeroDisparosTotalesDisponibles;
 }
 
-function aumentoDificultad(){
-    let dificultadPantalla = document.getElementById("dificultad");
-    dificultad++;
-    dificultadPantalla.innerText=dificultad;
+function aumentoVelocidad(){
+    let velocidadPantalla = document.getElementById("velocidad");
+    velocidad++;
+    velocidadPantalla.innerText=velocidad;
 }
 
 function aumentarPuntuacionUnMuerto(){
@@ -44,7 +44,7 @@ function aumentarPuntuacionUnMuerto(){
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
     puntuacionSpan.innerText=puntuacionNumero+Number(100); 
     if(parseInt(puntuacionSpan.innerText)%1000==0){
-        aumentoDificultad();
+        aumentoVelocidad();
     }   
 }
 
