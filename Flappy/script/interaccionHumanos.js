@@ -177,7 +177,10 @@ function escapar(humano){
             break;
         }
     }
-disminuirPuntuacion()
+    if(humano instanceof Policia){
+        clearInterval(humano.intervaloDisparar);
+    }
+    disminuirPuntuacion()
 }
 
 //otros
@@ -210,11 +213,11 @@ function movimientoDiagonalHaciaIzquierda(bala){
     intervalo=setInterval(() => {
         bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
         bala.style.left=(parseInt(bala.style.left)-Number(10)) + "px";
-        if((parseInt(bala.style.left)<rect.left)){
-            console.log("limpio bala");
+        if((parseInt(bala.style.left)<rect.left) || (parseInt(bala.style.top)<rect.top)){
+            bala.remove();
             clearInterval(intervalo);
         }
-    }, 200);
+    }, 20);
         
 }
 
@@ -225,8 +228,10 @@ function movimientoDiagonalHaciaDerecha(bala){
     intervalo=setInterval(() => {
         bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
         bala.style.left=(parseInt(bala.style.left)+Number(10)) + "px";
-        if((parseInt(bala.style.left)>rect.right)){
+        if((parseInt(bala.style.left)>rect.right) || (parseInt(bala.style.top)<rect.top)){
+            bala.remove();
             clearInterval(intervalo);
         }
     }, 20);
 }
+

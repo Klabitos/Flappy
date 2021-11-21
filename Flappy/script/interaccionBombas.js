@@ -55,7 +55,9 @@ function comprobarSiMuerto(bomba){
             delete humano;
             listaHumanos.splice(i,1);
             clearInterval(humano.obtenerIntervaloMovimiento()); //para que se pare lo establecido en el intervalo (el escapar)
-
+            if(humano instanceof Policia){
+                clearInterval(humano.intervaloDisparar);
+            }
             aumentarPuntuacionUnMuerto();
             muertesEstaBomba++;
         }
