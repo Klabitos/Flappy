@@ -1,6 +1,24 @@
 var velocidad = 1;
 var numeroDisparosTotalesDisponibles = 2;
 
+document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
+
+function generarBarraVida(){
+    let elementoContenedor = document.getElementById("vidas");
+    let divCreado;
+    for(let i=0; i<100; i++){
+        divCreado=document.createElement("div");
+        divCreado.classList.add("vida");
+        divCreado.classList.add("vidaStandard");
+        divCreado.innerHTML="&nbsp;";
+        elementoContenedor.append(divCreado);
+        if(i==99){
+            divCreado.classList.add("ultimaVida");
+        }else if(i==0){
+            divCreado.classList.add("primeraVida");
+        }
+    }
+}
 
 function tripleKillAndSo(kills){
     let textoEnPantalla = document.getElementById("kills");

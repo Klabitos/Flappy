@@ -59,11 +59,11 @@ body{
     align-items: center;
 }
 
-#vidas div{
+.vida{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     height: 25%;
-    width: 10%;
+    width: 1%;
     
 }
 .vidaStandard{

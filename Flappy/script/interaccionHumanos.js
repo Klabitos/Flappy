@@ -9,6 +9,8 @@ var id = () => {
     return numId;
 }
 
+document.body.addEventListener("load", generacionHumanos());
+
 class Humano{
     constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div, idHumano){
         this.velocidad = velocidad;
