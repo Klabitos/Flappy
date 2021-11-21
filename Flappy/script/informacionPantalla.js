@@ -5,6 +5,14 @@ document.body.addEventListener("keydown", tutorialCheck);
 var comprobanteFinalizacionTutorial=[false,false,false,false,false];
 //Para cambios genericos en barra de Vida
 var numVida = 100;
+//Dificultad EXTREMA
+var botonExtremo = document.getElementById("extremo");
+botonExtremo.addEventListener("click", ()=> {
+    hardcore=true;
+    botonExtremo.innerText="EXTREMO ACTIVO";
+    botonExtremo.classList.add("fondoRojo");
+});
+var hardcore=false;
 
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
 document.body.addEventListener("load", generarTutorial());

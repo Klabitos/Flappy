@@ -56,6 +56,17 @@ body{
     background-size: cover;
 }
 
+#extremo{
+    position: absolute;
+    width: 10%;
+    top: 45%;
+    left: 4%;
+}
+
+.fondoRojo{
+    background-color: red;
+}
+
 
 
 

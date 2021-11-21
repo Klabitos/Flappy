@@ -71,6 +71,7 @@ function comprobarMovimiento(evento){
             comprobarChoqueSuelo();
             break;
     }
+    hardcore?generacionHumanos():0;
 }
 
 
