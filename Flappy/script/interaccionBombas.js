@@ -54,7 +54,7 @@ function comprobarSiMuerto(bomba){
             humano.obtenerDiv().remove();
             delete humano;
             listaHumanos.splice(i,1);
-            clearInterval(humano.obtenerIntervaloMovimiento()); //para que se pare lo establecido en el intervalo (el escapar)
+            clearInterval(humano.intervalo); //para que se pare lo establecido en el intervalo (el escapar)
             if(humano instanceof Policia){
                 clearInterval(humano.intervaloDisparar);
             }
@@ -69,6 +69,7 @@ function comprobarChoqueSuelo(){
     let rect = pantalla.getBoundingClientRect();    
     if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-80){
         choqueNaveSuelo();
+        disminuirVida();
     }
 }
 function choqueNaveSuelo(){

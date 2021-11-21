@@ -20,12 +20,6 @@ class Humano{
         this.idHumano = idHumano;
         this.intervalo = 0;
     }
-    obtenerPosicionIzquierda(){
-        return this.div.style.left;
-    }
-    obtenerPosicionAlta(){
-        return this.div.style.top;
-    }
     darClase(){
         this.div.classList.add("humano");
     }
@@ -37,9 +31,6 @@ class Humano{
     }
     establecerIntervaloMovimiento(intervalo){
         this.intervalo=intervalo;
-    }
-    obtenerIntervaloMovimiento(){
-        return this.intervalo;
     }
 }
 
@@ -54,12 +45,6 @@ class Policia{
         this.intervalo = 0;  
         this.intervaloDisparar = 0;
     }
-    obtenerPosicionIzquierda(){
-        return this.div.style.left;
-    }
-    obtenerPosicionAlta(){
-        return this.div.style.top;
-    }
     obtenerDiv(){
         return this.div;
     }
@@ -68,9 +53,6 @@ class Policia{
     }
     establecerIntervaloMovimiento(intervalo){
         this.intervalo=intervalo;
-    }
-    obtenerIntervaloMovimiento(){
-        return this.intervalo;
     }
     darClase(){
         this.div.classList.add("policia");
@@ -145,11 +127,10 @@ function movimientoHumanos(humano){
 
 function movimientoDerechaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
-    let intervaloDerecha;
     humano.establecerIntervaloMovimiento(setInterval(() => {
         humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)+Number(5)) + "px";
         if((parseInt(humano.obtenerDiv().style.left)>rect.right-Number(40))){
-            clearInterval(humano.obtenerIntervaloMovimiento());
+            clearInterval(humano.intervalo);
             escapar(humano);
         }
     }, humano.obtenerVelocidad()));
@@ -157,11 +138,10 @@ function movimientoDerechaHumano(humano){
 
 function movimientoIzquierdaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
-    let intervaloIzquierda;
     humano.establecerIntervaloMovimiento(setInterval(() => {
         humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)-Number(5)) + "px";
         if(parseInt(humano.obtenerDiv().style.left)<rect.left){
-            clearInterval(humano.obtenerIntervaloMovimiento());
+            clearInterval(humano.intervalo);
             escapar(humano);
         }
     },  humano.obtenerVelocidad()));
