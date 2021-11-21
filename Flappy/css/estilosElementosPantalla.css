@@ -30,6 +30,22 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.bala{
+    position: absolute;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.imagenBalaHaciaDerecha{
+    transform:rotate(150deg); 
+    background-image:url(../img/bomba/bala.png);
+}
+.imagenBalaHaciaIzquierda{
+    transform:rotate(50deg); 
+    background-image:url(../img/bomba/bala.png);
+}
 
 
 .humano{

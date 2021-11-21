@@ -60,7 +60,7 @@ class Policia{
     disparar(){
         this.intervaloDisparar = setInterval(() => {
             generarBalaDisparar(this.div, this.aparicion);
-        }, 1000);
+        }, randomIntFromInterval(800,1200));
     }
 }
 
@@ -174,14 +174,16 @@ function randomIntFromInterval(min, max) { // min and max included
 
 function generarBalaDisparar(div, aparacion){
     let bala = document.createElement("div");
-    bala.classList.add("bomba");
+    bala.classList.add("bala");
     bala.style.left=parseInt(div.style.left)+"px";
     bala.style.top=parseInt(div.style.top)+"px";
     pantalla.appendChild(bala);
     if(aparacion==1){
-        movimientoDiagonalHaciaDerecha(bala)
+        movimientoDiagonalHaciaDerecha(bala);
+        bala.classList.add("imagenBalaHaciaDerecha");
     }else{
         movimientoDiagonalHaciaIzquierda(bala);
+        bala.classList.add("imagenBalaHaciaIzquierda");
     }
 }
 
