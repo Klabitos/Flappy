@@ -23,6 +23,31 @@ function generarBarraVida(){
     }
 }
 
+function tutorial(){
+    let divParrafoIntroductorio = document.createElement("div");
+    let bienvenidos = document.createElement("h2");
+    let arriba = document.createElement("h3");
+    let abajo = document.createElement("h3");
+    let izquierda = document.createElement("h3");
+    let derecha = document.createElement("h3");
+    let disparar = document.createElement("h3");
+    divParrafoIntroductorio.classList.add("parrafoTutorial");
+    bienvenidos.textContent="Bienvenido, para comenzar a jugar prueba los controles: \n"
+    izquierda.textContent="-A izquierda";
+    derecha.textContent="-D derecha";
+    abajo.textContent="-S abajo";
+    arriba.textContent="-W arriba";
+    disparar.textContent+="-Space disparar\n";
+    pantalla.appendChild(divParrafoIntroductorio);
+    
+    divParrafoIntroductorio.appendChild(bienvenidos);
+    divParrafoIntroductorio.appendChild(arriba);
+    divParrafoIntroductorio.appendChild(abajo);
+    divParrafoIntroductorio.appendChild(izquierda);
+    divParrafoIntroductorio.appendChild(derecha);
+    divParrafoIntroductorio.appendChild(disparar);
+}
+
 function disminuirVida(){
     let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
     todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");

@@ -89,9 +89,11 @@ function golpeoDisparoNave(bala, intervalo){
     let ladoRightNave = parseInt(cuadradoQueSeMueve.style.left)+Number(40);
     let ladoTopNave = parseInt(cuadradoQueSeMueve.style.top);
     if(parseInt(bala.style.top)-Number(10)<ladoBottomNave && parseInt(bala.style.top)>ladoTopNave){ //15 es un ajuste por el tamaño de la imagen
-        //Misma Altura //Tiene que haberse movido en todas las direcciones al menos una vez para que la bal lo detecte, sino necesitariamos el windows.getComputed
+        //Misma Altura 
+        //Tiene que haberse movido en todas las direcciones al menos una vez para que la bala lo detecte, sino necesitariamos el windows.getComputed
+        //Esto se debe a que si no se ha movido la posicion es la del CSS y no la que asignamos aquí a mano, por lo que no detectaria dicha posición.
+        //Si lo hacemos con el windows.getComputed es muy inexacta
         if(parseInt(bala.style.left)>ladoIzquierdoNave && parseInt(bala.style.left)<ladoRightNave){
-            //Hit
             explotarBala(bala, intervalo);
             disminuirVidaBalazo(5);
         }

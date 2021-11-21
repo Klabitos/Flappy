@@ -62,3 +62,15 @@
 .primeraVida{
     border-left: 1px solid black;
 }
+
+.parrafoTutorial{
+    position: relative;
+    background-color: goldenrod;
+    opacity: 0.6;
+    width: 20%;
+    height: 50%;
+    margin-top: 10%;
+    margin-left: 40%;
+    border: 1px solid black;
+    text-align: center;
+}
