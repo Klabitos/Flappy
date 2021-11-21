@@ -1,22 +1,38 @@
 var velocidad = 1;
 var numeroDisparosTotalesDisponibles = 2;
 
+//Para cambios genericos en barra de Vida
+var numVida = 100;
+
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
 
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
     let divCreado;
-    for(let i=0; i<100; i++){
+    for(let i=0; i<numVida; i++){
         divCreado=document.createElement("div");
         divCreado.classList.add("vida");
         divCreado.classList.add("vidaStandard");
         divCreado.innerHTML="&nbsp;";
         elementoContenedor.append(divCreado);
-        if(i==99){
+        if(i==numVida-1){
             divCreado.classList.add("ultimaVida");
         }else if(i==0){
             divCreado.classList.add("primeraVida");
         }
+    }
+}
+
+function disminuirVida(){
+    let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
+    todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");
+    comprobarDerrota();
+}
+
+function comprobarDerrota(){
+    let todaLaVidaRoja = document.querySelectorAll(".vidaPerdida");
+    if(todaLaVidaRoja.length==numVida){
+        alert("Has perdido");
     }
 }
 
@@ -72,6 +88,6 @@ function disminuirPuntuacion(){
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
     textoEnPantalla.innerText="Escapado :(";
     textoEnPantalla.className="escapado";
-    
+    disminuirVida();
     puntuacionSpan.innerText=puntuacionNumero-Number(50);   
 }
