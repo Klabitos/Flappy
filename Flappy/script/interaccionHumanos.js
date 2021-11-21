@@ -43,6 +43,39 @@ class Humano{
     }
 }
 
+class Policia{
+    constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div, idHumano){  
+        this.velocidad = velocidad;
+        this.fondoHaciaIzquierda = fondoHaciaIzquierda;
+        this.fondoHaciaDerecha = fondoHaciaDerecha;
+        this.aparicion = aparicion;
+        this.div = div;
+        this.idHumano = idHumano;
+        this.intervalo = 0;  
+    }
+    obtenerPosicionIzquierda(){
+        return this.div.style.left;
+    }
+    obtenerPosicionAlta(){
+        return this.div.style.top;
+    }
+    obtenerDiv(){
+        return this.div;
+    }
+    obtenerVelocidad(){
+        return 100-this.velocidad;
+    }
+    establecerIntervaloMovimiento(intervalo){
+        this.intervalo=intervalo;
+    }
+    obtenerIntervaloMovimiento(){
+        return this.intervalo;
+    }
+    darClase(){
+        this.div.classList.add("policia");
+    }
+}
+
 
 function generacionHumanos(){
     seedHumanos = setInterval(() => {
@@ -58,7 +91,7 @@ function unHumanoNuevo(){
     let rect = pantalla.getBoundingClientRect(); //TODO usar la velocidad y la aparicion
     let humano = tipoDeHumano();
     humano.darClase();
-    humano.obtenerDiv().style.top=rect.bottom-60+"px";
+    humano.obtenerDiv().style.top=rect.bottom-80+"px";
     if(humano.aparicion==1){
         humano.obtenerDiv().style.left=rect.left+"px";
         humano.obtenerDiv().style.backgroundImage=humano.fondoHaciaDerecha;
@@ -68,7 +101,6 @@ function unHumanoNuevo(){
     }
     pantalla.appendChild(humano.obtenerDiv());
     movimientoHumanos(humano);
-    
 }
 
 function tipoDeHumano(){
@@ -88,7 +120,7 @@ function tipoDeHumano(){
             humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
             break;
         case 5:
-            humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
+            humano = new Policia(randomIntFromInterval(45,55),"url(../img/humano/policia.png","url(../img/humano/policia2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
             break;    
     }
     listaHumanos.push(humano);
