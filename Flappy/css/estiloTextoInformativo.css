@@ -68,9 +68,14 @@
     background-color: goldenrod;
     opacity: 0.6;
     width: 20%;
-    height: 50%;
+    height: 35%;
     margin-top: 10%;
     margin-left: 40%;
     border: 1px solid black;
     text-align: center;
+    overflow-y: auto;
+}
+
+.azul{
+    color: blue;
 }

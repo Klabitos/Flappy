@@ -1,8 +1,6 @@
 var numeroBombasEnElAire=0;
 
-function bombaFuncionalidad(){
-    generarBomba();
-}
+
 
 function generarBomba(){
     if(numeroBombasEnElAire<numeroDisparosTotalesDisponibles){

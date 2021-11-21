@@ -1,11 +1,13 @@
 var velocidad = 1;
 var numeroDisparosTotalesDisponibles = 2;
+document.body.addEventListener("keydown", tutorialCheck);
 
+var comprobanteFinalizacionTutorial=[false,false,false,false,false];
 //Para cambios genericos en barra de Vida
 var numVida = 100;
 
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
-document.body.addEventListener("load", tutorial());
+document.body.addEventListener("load", generarTutorial());
 
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
@@ -24,29 +26,7 @@ function generarBarraVida(){
     }
 }
 
-function tutorial(){
-    let divParrafoIntroductorio = document.createElement("div");
-    let bienvenidos = document.createElement("h2");
-    let arriba = document.createElement("h3");
-    let abajo = document.createElement("h3");
-    let izquierda = document.createElement("h3");
-    let derecha = document.createElement("h3");
-    let disparar = document.createElement("h3");
-    divParrafoIntroductorio.classList.add("parrafoTutorial");
-    bienvenidos.textContent="Bienvenido, para comenzar a jugar prueba los controles: \n"
-    izquierda.textContent="-A izquierda";
-    derecha.textContent="-D derecha";
-    abajo.textContent="-S abajo";
-    arriba.textContent="-W arriba";
-    disparar.textContent+="-Space disparar\n";
-    pantalla.appendChild(divParrafoIntroductorio);
-    divParrafoIntroductorio.appendChild(bienvenidos);
-    divParrafoIntroductorio.appendChild(arriba);
-    divParrafoIntroductorio.appendChild(abajo);
-    divParrafoIntroductorio.appendChild(izquierda);
-    divParrafoIntroductorio.appendChild(derecha);
-    divParrafoIntroductorio.appendChild(disparar);
-}
+
 
 function disminuirVida(){
     let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
@@ -123,4 +103,86 @@ function disminuirPuntuacion(){
     textoEnPantalla.className="escapado";
     disminuirVida();
     puntuacionSpan.innerText=puntuacionNumero-Number(50);   
+}
+
+//TUTORIAL //////////////////////////////////////////////////////////////////////////////
+function generarTutorial(){
+    let divParrafoIntroductorio = document.createElement("div");
+    let bienvenidos = document.createElement("h2");
+    let texto = document.createElement("h3");
+    divParrafoIntroductorio.classList.add("parrafoTutorial");
+    bienvenidos.textContent="Bienvenido, para comenzar a jugar prueba los controles: \n"
+    texto.innerHTML="<span id=A>-A izquierda</span> <br>";
+    texto.innerHTML+="<span id=D>-D derecha</span> <br>";
+    texto.innerHTML+="<span id=S>-S abajo </span><br>";
+    texto.innerHTML+="<span id=W>-W arriba</span> <br>";
+    texto.innerHTML+="<span id=Space>-Space disparar</span> <br>";
+    pantalla.appendChild(divParrafoIntroductorio);
+    divParrafoIntroductorio.appendChild(bienvenidos);
+    divParrafoIntroductorio.appendChild(texto);
+}
+function tutorialCheck(evento){
+    switch(evento.key.toLowerCase()){
+        case "w":
+            movimientoArriba();
+            W_check()
+            break;
+        case "a":
+            movimientoIzq();
+            A_check()
+            break;
+        case "s":
+            movimientoAbajo();
+            S_check()
+            break;
+        case "d":
+            movimientoDerecha();
+            D_check()
+            break;
+    }
+    if(evento.keyCode==32){
+        Space_check();
+        generarBomba();
+    }
+    comprobarFinTutorial();
+    
+}
+
+function A_check(){
+    comprobanteFinalizacionTutorial[0]=true;
+    let texto=document.getElementById("A");
+    texto.classList.add("azul");
+}
+function D_check(){
+    comprobanteFinalizacionTutorial[1]=true;
+    let texto=document.getElementById("D");
+    texto.classList.add("azul");
+}
+function S_check(){
+    comprobanteFinalizacionTutorial[2]=true;
+    let texto=document.getElementById("S");
+    texto.classList.add("azul");
+}
+function W_check(){
+    comprobanteFinalizacionTutorial[3]=true;
+    let texto=document.getElementById("W");
+    texto.classList.add("azul");
+}
+function Space_check(){
+    comprobanteFinalizacionTutorial[4]=true;
+    let texto=document.getElementById("Space");
+    texto.classList.add("azul");
+}
+
+function comprobarFinTutorial(){
+    let parrafoTutorial = document.getElementsByClassName("parrafoTutorial")[0];
+    for(let i=0; i<comprobanteFinalizacionTutorial.length; i++){
+        if(!comprobanteFinalizacionTutorial[i]){
+            return;
+        }
+    }
+    document.body.addEventListener("keydown", comprobanteTecla);
+    document.body.removeEventListener("keydown", tutorialCheck);
+    parrafoTutorial.remove();
+    generacionHumanos(); //creo que se ejecuta la generacion muchisimas veces lo que hace que sea tan divertido
 }
