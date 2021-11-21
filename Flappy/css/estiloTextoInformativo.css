@@ -1,0 +1,19 @@
+.kill{
+    color: royalblue;
+}
+.dobleKill{
+    color: yellowgreen;
+    text-shadow: black 0 -1px;
+    text-decoration: underline;
+}
+.tripleKill{
+    text-shadow: red 0 -2px;
+}
+.cuadraKill{
+    text-shadow: 1px 1px 2px black, 0 0 1em red, 0 0 0.2em red;
+    font: 1.5em Georgia, "Bitstream Charter", "URW Bookman L", "Century Schoolbook L", serif;
+}
+.escapado{
+    color: red;
+    font-style:italic;
+}

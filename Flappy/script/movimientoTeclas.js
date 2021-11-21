@@ -1,10 +1,7 @@
-
-
 document.body.addEventListener("keydown", comprobanteTecla);
 document.body.addEventListener("keyup", comprobanteTeclaLevantar);
 var cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
 var pantalla = document.getElementsByClassName("pantalla")[0];
-
 
 //Para permitir el movimiento mientras se dispara, y que aunque no registre el keyDown siga moviendose hasta el keyUp
 var movIzqActivo=false;
@@ -64,7 +61,6 @@ function comprobarBomba(evento){
         bombaFuncionalidad();
     }
 }
-
 
 function movimientoIzq(){
     let rect = pantalla.getBoundingClientRect(); //PARA QUE SEA RELATIVO A LA VISTA

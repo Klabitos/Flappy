@@ -1,4 +1,3 @@
-
 var numeroBombasEnElAire=0;
 
 function bombaFuncionalidad(){
@@ -26,13 +25,13 @@ function gravedad(bomba){
         if((parseInt(bomba.style.top)>rect.bottom-27)){
             clearInterval(intervalo);
             explotar(bomba);
+            numeroBombasEnElAire--;
         }
     }, 20);
         
 }
 
 function explotar(bomba){
-    numeroBombasEnElAire--;
     bomba.classList.replace("bomba","bomba_explosion")
     bomba.style.top=(parseInt(bomba.style.top)-Number(50)) + "px";
     bomba.style.left=(parseInt(bomba.style.left)-Number(20)) + "px";
@@ -45,11 +44,6 @@ function explotar(bomba){
         bomba.remove();
     }, 600);
 }
-
-
-  
-
-
 
 function comprobarSiMuerto(bomba){
     let muertesEstaBomba=0;
@@ -68,7 +62,6 @@ function comprobarSiMuerto(bomba){
     }
     tripleKillAndSo(muertesEstaBomba);
 }
-
 
 function comprobarChoqueSuelo(){
     let rect = pantalla.getBoundingClientRect();    
