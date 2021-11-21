@@ -67,7 +67,7 @@ function comprobarSiMuerto(bomba){
 
 function comprobarChoqueSuelo(){
     let rect = pantalla.getBoundingClientRect();    
-    if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-80){
+    if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-100){
         choqueNaveSuelo();
         disminuirVida();
     }

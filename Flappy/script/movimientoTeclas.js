@@ -16,6 +16,20 @@ var intervaloAbaj;
 function comprobanteTecla(evento){
     comprobarMovimiento(evento);
     comprobarBomba(evento);
+    if(evento.keyCode==17){//control izq
+        deBugMovimiento();
+    }
+}
+
+function deBugMovimiento(){ //No se si funciona aun
+    movIzqActivo=false;
+    movDerActivo=false;
+    movArrActivo=false;
+    movAbajActivo=false;
+    clearInterval(intervaloIzq);
+    clearInterval(intervaloDer);
+    clearInterval(intervaloArr);
+    clearInterval(intervaloAbaj);
 }
 
 function comprobanteTeclaLevantar(evento){
