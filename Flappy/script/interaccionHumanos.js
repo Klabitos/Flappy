@@ -52,6 +52,7 @@ class Policia{
         this.div = div;
         this.idHumano = idHumano;
         this.intervalo = 0;  
+        this.intervaloDisparar = 0;
     }
     obtenerPosicionIzquierda(){
         return this.div.style.left;
@@ -73,6 +74,11 @@ class Policia{
     }
     darClase(){
         this.div.classList.add("policia");
+    }
+    disparar(){
+        this.intervaloDisparar = setInterval(() => {
+            generarBalaDisparar(this.div, this.aparicion);
+        }, 1000);
     }
 }
 
@@ -121,6 +127,7 @@ function tipoDeHumano(){
             break;
         case 5:
             humano = new Policia(randomIntFromInterval(45,55),"url(../img/humano/policia.png","url(../img/humano/policia2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
+            humano.disparar();
             break;    
     }
     listaHumanos.push(humano);
@@ -178,3 +185,48 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+
+
+//polisia
+
+function generarBalaDisparar(div, aparacion){
+    let bala = document.createElement("div");
+    bala.classList.add("bomba");
+    bala.style.left=parseInt(div.style.left)+"px";
+    bala.style.top=parseInt(div.style.top)+"px";
+    pantalla.appendChild(bala);
+    if(aparacion==1){
+        movimientoDiagonalHaciaDerecha(bala)
+    }else{
+        movimientoDiagonalHaciaIzquierda(bala);
+    }
+}
+
+
+function movimientoDiagonalHaciaIzquierda(bala){
+    let rect = pantalla.getBoundingClientRect();
+    let intervalo;
+    
+    intervalo=setInterval(() => {
+        bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
+        bala.style.left=(parseInt(bala.style.left)-Number(10)) + "px";
+        if((parseInt(bala.style.left)<rect.left)){
+            console.log("limpio bala");
+            clearInterval(intervalo);
+        }
+    }, 200);
+        
+}
+
+function movimientoDiagonalHaciaDerecha(bala){
+    let rect = pantalla.getBoundingClientRect();
+    let intervalo;
+    
+    intervalo=setInterval(() => {
+        bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
+        bala.style.left=(parseInt(bala.style.left)+Number(10)) + "px";
+        if((parseInt(bala.style.left)>rect.right)){
+            clearInterval(intervalo);
+        }
+    }, 20);
+}
