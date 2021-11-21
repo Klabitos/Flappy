@@ -5,6 +5,7 @@ var numeroDisparosTotalesDisponibles = 2;
 var numVida = 100;
 
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
+document.body.addEventListener("load", tutorial());
 
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
@@ -39,7 +40,6 @@ function tutorial(){
     arriba.textContent="-W arriba";
     disparar.textContent+="-Space disparar\n";
     pantalla.appendChild(divParrafoIntroductorio);
-    
     divParrafoIntroductorio.appendChild(bienvenidos);
     divParrafoIntroductorio.appendChild(arriba);
     divParrafoIntroductorio.appendChild(abajo);

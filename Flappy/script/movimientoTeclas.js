@@ -3,6 +3,8 @@ document.body.addEventListener("keyup", comprobanteTeclaLevantar);
 var cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
 var pantalla = document.getElementsByClassName("pantalla")[0];
 
+var comprobanteFinalizacionTutorial=[false,false,false,false];
+
 //Para permitir el movimiento mientras se dispara, y que aunque no registre el keyDown siga moviendose hasta el keyUp
 var movIzqActivo=false;
 var intervaloIzq;
@@ -54,20 +56,35 @@ function comprobarMovimiento(evento){
         case "w":
             movimientoArriba();
             comprobarChoqueSuelo();
+            comprobanteFinalizacionTutorial[0]=true;
             break;
         case "a":
             movimientoIzq();
             comprobarChoqueSuelo();
+            comprobanteFinalizacionTutorial[1]=true;
             break;
         case "s":
             movimientoAbajo();
             comprobarChoqueSuelo();
+            comprobanteFinalizacionTutorial[2]=true;
             break;
         case "d":
             movimientoDerecha();
             comprobarChoqueSuelo();
+            comprobanteFinalizacionTutorial[3]=true;
             break;
     }
+    for(let i=0; i<comprobanteFinalizacionTutorial.length; i++){
+        if(!comprobanteFinalizacionTutorial[i]){
+            return;
+        }
+    }
+    generacionHumanos();//creo que se ejecuta la generacion muchisimas veces
+    
+}
+
+function arribaCheck(){
+
 }
 
 function comprobarBomba(evento){

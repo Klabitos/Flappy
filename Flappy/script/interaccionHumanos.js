@@ -8,7 +8,6 @@ var id = () => {
     return numId;
 }
 
-document.body.addEventListener("load", generacionHumanos());
 
 class Humano{
     constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div, idHumano){
@@ -70,6 +69,8 @@ function generacionHumanos(){
         comprobarGenerarHumanos();
     }, 1000-((velocidad-1)*10)<=990?(velocidad-1)*10:990); //Para que no sea 0 nunca
 }
+
+
 function comprobarGenerarHumanos(){
     if(listaHumanos.length<velocidad+Number(10)){
         unHumanoNuevo();
