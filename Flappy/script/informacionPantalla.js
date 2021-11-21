@@ -33,6 +33,7 @@ function comprobarDerrota(){
     let todaLaVidaRoja = document.querySelectorAll(".vidaPerdida");
     if(todaLaVidaRoja.length==numVida){
         alert("Has perdido");
+        location.reload(); 
     }
 }
 

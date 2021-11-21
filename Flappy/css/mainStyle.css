@@ -30,7 +30,6 @@ body{
 }
 
 .footer h2{
-
     background-color: goldenrod;
     width: 25%;
     height: 60%;
@@ -39,47 +38,6 @@ body{
     text-align: center;
 }
 
-#textoVidas{
-    background-color: goldenrod;
-    width: 5%;
-    height: 25%;
-    margin-left: 6%;
-    border: 1px solid black;
-    text-align: center;
-}
-
-#vidas{
-    
-    width: 25%;
-    height: 60%;
-    margin-left: 2%;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.vida{
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 25%;
-    width: 1%;
-    
-}
-.vidaStandard{
-    background-color: green;
-}
-
-.vidaPerdida{
-    background-color: lightgreen;
-}
-
-.ultimaVida{
-    border-right: 1px solid black;
-}
-.primeraVida{
-    border-left: 1px solid black;
-}
 .cabecera h1{
     background-color: khaki;
     width: 25%;
@@ -97,74 +55,11 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.keyLog{
-    text-align: center;
-    height: 10%;
-    border: 1px solid black;
-    margin: 5px;
-}
-
-#cuadradoPrueba{
-    position: absolute;
-    top: 20vw;
-    left: 47vw;
-    z-index: 2;
-    width: 100px;
-    height: 100px;
-    background-image:url(../img/nave/nave.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bomba_explosion{
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background-image:url(../img/bomba/Explosion.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    animation-name: explosionAnimacion;
-    animation-duration: 0.7s;
-}
-.bomba{
-    position: absolute;
-    z-index: 1;
-    width: 20px;
-    height: 20px;
-    background-image:url(../img/bomba/rocket.png);
-    transform:rotate(150deg); 
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.humano{
-    position: absolute;
-    width: 60px;
-    height: 100px;
-    background-image: url(../img/humano/caminante.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-}
 
 
 
-#balasImagen{
-    width: 200%;
-    height: 200%;
-    background-image: url(../img/bomba/bombaParaIndex.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 
-@keyframes explosionAnimacion {
-    0%   {transform: scale(2, 2);}
-    10% {transform: scale(0.5, 0.5);}
-    25%   {transform: scale(2, 2);}
-    40% {transform: scale(0.5, 0.5);}
-    60% {transform: scale(1, 1);}
-    70%   {transform: scale(2, 2);}
-    80% {transform: scale(0.4, 0.4);}
-    90%   {transform: scale(1, );}
-    100% {transform: scale(0, 0);}
-  }
+
+
+
