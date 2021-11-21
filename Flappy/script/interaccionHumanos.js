@@ -195,6 +195,7 @@ function movimientoDiagonalHaciaIzquierda(bala){
     intervalo=setInterval(() => {
         bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
         bala.style.left=(parseInt(bala.style.left)-Number(10)) + "px";
+        golpeoDisparoNave(bala, intervalo);
         if((parseInt(bala.style.left)<rect.left) || (parseInt(bala.style.top)<rect.top)){
             bala.remove();
             clearInterval(intervalo);
@@ -210,6 +211,7 @@ function movimientoDiagonalHaciaDerecha(bala){
     intervalo=setInterval(() => {
         bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
         bala.style.left=(parseInt(bala.style.left)+Number(10)) + "px";
+        golpeoDisparoNave(bala, intervalo);
         if((parseInt(bala.style.left)>rect.right) || (parseInt(bala.style.top)<rect.top)){
             bala.remove();
             clearInterval(intervalo);

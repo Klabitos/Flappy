@@ -82,3 +82,28 @@ function choqueNaveSuelo(){
     pantalla.appendChild(bombaCreada);
     explotar(bombaCreada);
 }
+
+function golpeoDisparoNave(bala, intervalo){
+    let ladoIzquierdoNave = parseInt(cuadradoQueSeMueve.style.left);
+    let ladoBottomNave = parseInt(cuadradoQueSeMueve.style.top)+Number(40);
+    let ladoRightNave = parseInt(cuadradoQueSeMueve.style.left)+Number(40);
+    let ladoTopNave = parseInt(cuadradoQueSeMueve.style.top);
+    if(parseInt(bala.style.top)-Number(10)<ladoBottomNave && parseInt(bala.style.top)>ladoTopNave){ //15 es un ajuste por el tamaño de la imagen
+        //Misma Altura //Tiene que haberse movido en todas las direcciones al menos una vez para que la bal lo detecte, sino necesitariamos el windows.getComputed
+        if(parseInt(bala.style.left)>ladoIzquierdoNave && parseInt(bala.style.left)<ladoRightNave){
+            //Hit
+            explotarBala(bala, intervalo);
+            disminuirVidaBalazo(5);
+        }
+
+    }
+}
+
+function explotarBala(bala, intervalo){
+    bala.style.backgroundImage = "url(../img/bomba/Explosion.png)";  
+    bala.style.zIndex = "4";  
+    clearInterval(intervalo);
+    setTimeout(() => {
+        bala.remove();
+    }, 300);
+}

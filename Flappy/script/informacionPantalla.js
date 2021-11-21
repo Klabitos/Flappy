@@ -28,6 +28,13 @@ function disminuirVida(){
     todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");
     comprobarDerrota();
 }
+function disminuirVidaBalazo(valorVidaPerdida){
+    let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
+    for(let i=0; i<valorVidaPerdida; i++){
+        todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");
+    }
+    comprobarDerrota();
+}
 
 function comprobarDerrota(){
     let todaLaVidaRoja = document.querySelectorAll(".vidaPerdida");
