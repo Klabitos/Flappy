@@ -1,11 +1,23 @@
-var velocidad = 1;
-var numeroDisparosTotalesDisponibles = 2;
-
-//Para cambios genericos en barra de Vida
-var numVida = 100;
-
+/*-----------    Listeners ---------------*/
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
+document.body.addEventListener("load", generarTutorial());
+document.body.addEventListener("load", generarNave());
+document.body.addEventListener("keydown", tutorialCheck);
+document.getElementById("extremo").addEventListener("click", activarHardcore);
+document.getElementById("debug").addEventListener("click", explotarNaveGenerarNueva);
+/*----------------------------------------*/
 
+/*-----------    NAVE ---------------*/
+function generarNave(){
+    let nave = document.createElement("div");
+    nave.classList.add("cuadradoPrueba");
+    nave.style.left=window.screen.availWidth/2+"px";
+    nave.style.top=window.screen.availHeight/2+"px";
+    pantalla.append(nave);
+    pantalla.focus();
+}
+
+/*-----------    VIDA ---------------*/
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
     let divCreado;
@@ -22,10 +34,16 @@ function generarBarraVida(){
         }
     }
 }
-
 function disminuirVida(){
     let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
     todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");
+    comprobarDerrota();
+}
+function disminuirVidaBalazo(valorVidaPerdida){
+    let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
+    for(let i=0; i<valorVidaPerdida; i++){
+        todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");
+    }
     comprobarDerrota();
 }
 
@@ -36,6 +54,27 @@ function comprobarDerrota(){
         location.reload(); 
     }
 }
+
+/*-----------    debugger MOVIMIENTO ---------------*/
+function explotarNaveGenerarNueva(){
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
+    cuadradoQueSeMueve.style.backgroundImage = "url(../img/bomba/Explosion.png)";    
+    setTimeout(() => {
+        cuadradoQueSeMueve.style.opacity="0.5";
+    }, 200);
+    setTimeout(() => {
+        cuadradoQueSeMueve.style.opacity="0";
+    }, 400);
+    setTimeout(() => {
+        cuadradoQueSeMueve.remove();
+        alert("Ahora tienes que hacer click en la pantalla de juego para que la partida funcione correctamente");
+        generarNave();
+        pantalla.focus();
+    }, 300);
+    
+}
+
+/*-----------    VISUAL || STATS---------------*/
 
 function tripleKillAndSo(kills){
     let textoEnPantalla = document.getElementById("kills");
@@ -91,4 +130,94 @@ function disminuirPuntuacion(){
     textoEnPantalla.className="escapado";
     disminuirVida();
     puntuacionSpan.innerText=puntuacionNumero-Number(50);   
+}
+
+function activarHardcore(){
+    let botonExtremo = document.getElementById("extremo");
+    hardcore=true;
+    botonExtremo.innerText="EXTREMO ACTIVO";
+    botonExtremo.classList.add("fondoRojo");
+    pantalla.focus();
+}
+
+/*-----------    TUTORIAL---------------*/
+function generarTutorial(){
+    let divParrafoIntroductorio = document.createElement("div");
+    let bienvenidos = document.createElement("h2");
+    let texto = document.createElement("h3");
+    divParrafoIntroductorio.classList.add("parrafoTutorial");
+    bienvenidos.textContent="Bienvenido, para comenzar a jugar prueba los controles: \n"
+    texto.innerHTML="<span id=A>-A izquierda</span> <br>";
+    texto.innerHTML+="<span id=D>-D derecha</span> <br>";
+    texto.innerHTML+="<span id=S>-S abajo </span><br>";
+    texto.innerHTML+="<span id=W>-W arriba</span> <br>";
+    texto.innerHTML+="<span id=Space>-Space disparar</span> <br>";
+    pantalla.appendChild(divParrafoIntroductorio);
+    divParrafoIntroductorio.appendChild(bienvenidos);
+    divParrafoIntroductorio.appendChild(texto);
+}
+function tutorialCheck(evento){
+    switch(evento.key.toLowerCase()){
+        case "w":
+            movimientoArriba();
+            W_check()
+            break;
+        case "a":
+            movimientoIzq();
+            A_check()
+            break;
+        case "s":
+            movimientoAbajo();
+            S_check()
+            break;
+        case "d":
+            movimientoDerecha();
+            D_check()
+            break;
+    }
+    if(evento.keyCode==32){
+        Space_check();
+        generarBomba();
+    }
+    comprobarFinTutorial();
+    
+}
+
+function A_check(){
+    comprobanteFinalizacionTutorial[0]=true;
+    let texto=document.getElementById("A");
+    texto.classList.add("azul");
+}
+function D_check(){
+    comprobanteFinalizacionTutorial[1]=true;
+    let texto=document.getElementById("D");
+    texto.classList.add("azul");
+}
+function S_check(){
+    comprobanteFinalizacionTutorial[2]=true;
+    let texto=document.getElementById("S");
+    texto.classList.add("azul");
+}
+function W_check(){
+    comprobanteFinalizacionTutorial[3]=true;
+    let texto=document.getElementById("W");
+    texto.classList.add("azul");
+}
+function Space_check(){
+    comprobanteFinalizacionTutorial[4]=true;
+    let texto=document.getElementById("Space");
+    texto.classList.add("azul");
+}
+
+function comprobarFinTutorial(){
+    let parrafoTutorial = document.getElementsByClassName("parrafoTutorial")[0];
+    for(let i=0; i<comprobanteFinalizacionTutorial.length; i++){
+        if(!comprobanteFinalizacionTutorial[i]){
+            return;
+        }
+    }
+    document.body.addEventListener("keydown", comprobanteTecla);
+    document.body.removeEventListener("keydown", tutorialCheck);
+    parrafoTutorial.remove();
+    generacionHumanos(); //creo que se ejecuta la generacion muchisimas veces lo que hace que sea tan divertido
 }

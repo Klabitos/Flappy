@@ -1,54 +1,10 @@
-var listaHumanos = [];
-
-var seedHumanos;
-var numId = 0;
-var id = () => {
-    numId==100?numId=0:0;
-    numId++;
-    return numId;
-}
-
-document.body.addEventListener("load", generacionHumanos());
-
-class Humano{
-    constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div, idHumano){
-        this.velocidad = velocidad;
-        this.fondoHaciaIzquierda = fondoHaciaIzquierda;
-        this.fondoHaciaDerecha = fondoHaciaDerecha;
-        this.aparicion = aparicion;
-        this.div = div;
-        this.idHumano = idHumano;
-        this.intervalo = 0;
-    }
-    obtenerPosicionIzquierda(){
-        return this.div.style.left;
-    }
-    obtenerPosicionAlta(){
-        return this.div.style.top;
-    }
-    darClase(){
-        this.div.classList.add("humano");
-    }
-    obtenerDiv(){
-        return this.div;
-    }
-    obtenerVelocidad(){
-        return 100-this.velocidad;
-    }
-    establecerIntervaloMovimiento(intervalo){
-        this.intervalo=intervalo;
-    }
-    obtenerIntervaloMovimiento(){
-        return this.intervalo;
-    }
-}
-
-
+/*-----------    PERSONAS (genérico) ---------------*/
 function generacionHumanos(){
     seedHumanos = setInterval(() => {
         comprobarGenerarHumanos();
     }, 1000-((velocidad-1)*10)<=990?(velocidad-1)*10:990); //Para que no sea 0 nunca
 }
+
 function comprobarGenerarHumanos(){
     if(listaHumanos.length<velocidad+Number(10)){
         unHumanoNuevo();
@@ -58,7 +14,7 @@ function unHumanoNuevo(){
     let rect = pantalla.getBoundingClientRect(); //TODO usar la velocidad y la aparicion
     let humano = tipoDeHumano();
     humano.darClase();
-    humano.obtenerDiv().style.top=rect.bottom-60+"px";
+    humano.obtenerDiv().style.top=rect.bottom-80+"px";
     if(humano.aparicion==1){
         humano.obtenerDiv().style.left=rect.left+"px";
         humano.obtenerDiv().style.backgroundImage=humano.fondoHaciaDerecha;
@@ -68,7 +24,6 @@ function unHumanoNuevo(){
     }
     pantalla.appendChild(humano.obtenerDiv());
     movimientoHumanos(humano);
-    
 }
 
 function tipoDeHumano(){
@@ -88,7 +43,8 @@ function tipoDeHumano(){
             humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
             break;
         case 5:
-            humano = new Humano(randomIntFromInterval(45,55),"url(../img/humano/caminante.png","url(../img/humano/caminante2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
+            humano = new Policia(randomIntFromInterval(45,55),"url(../img/humano/policia.png","url(../img/humano/policia2.png",randomIntFromInterval(1,2),document.createElement("div"),id());
+            humano.disparar();
             break;    
     }
     listaHumanos.push(humano);
@@ -106,11 +62,10 @@ function movimientoHumanos(humano){
 
 function movimientoDerechaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
-    let intervaloDerecha;
     humano.establecerIntervaloMovimiento(setInterval(() => {
         humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)+Number(5)) + "px";
         if((parseInt(humano.obtenerDiv().style.left)>rect.right-Number(40))){
-            clearInterval(humano.obtenerIntervaloMovimiento());
+            clearInterval(humano.intervalo);
             escapar(humano);
         }
     }, humano.obtenerVelocidad()));
@@ -118,11 +73,10 @@ function movimientoDerechaHumano(humano){
 
 function movimientoIzquierdaHumano(humano){
     let rect = pantalla.getBoundingClientRect();
-    let intervaloIzquierda;
     humano.establecerIntervaloMovimiento(setInterval(() => {
         humano.obtenerDiv().style.left=(parseInt(humano.obtenerDiv().style.left)-Number(5)) + "px";
         if(parseInt(humano.obtenerDiv().style.left)<rect.left){
-            clearInterval(humano.obtenerIntervaloMovimiento());
+            clearInterval(humano.intervalo);
             escapar(humano);
         }
     },  humano.obtenerVelocidad()));
@@ -138,11 +92,65 @@ function escapar(humano){
             break;
         }
     }
-disminuirPuntuacion()
+    if(humano instanceof Policia){
+        clearInterval(humano.intervaloDisparar);
+    }
+    disminuirPuntuacion()
 }
 
-//otros
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
+/*-----------    POLICIA ---------------*/
+
+function generarBalaDisparar(div, aparacion){
+    let bala = document.createElement("div");
+    bala.classList.add("bala");
+    bala.style.left=parseInt(div.style.left)+"px";
+    bala.style.top=parseInt(div.style.top)+"px";
+    pantalla.appendChild(bala);
+    if(aparacion==1){
+        movimientoDiagonalHaciaDerecha(bala);
+        bala.classList.add("imagenBalaHaciaDerecha");
+    }else{
+        movimientoDiagonalHaciaIzquierda(bala);
+        bala.classList.add("imagenBalaHaciaIzquierda");
+    }
 }
 
+function movimientoDiagonalHaciaIzquierda(bala){
+    let rect = pantalla.getBoundingClientRect();
+    let intervalo;
+    
+    intervalo=setInterval(() => {
+        bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
+        bala.style.left=(parseInt(bala.style.left)-Number(10)) + "px";
+        golpeoDisparoNave(bala, intervalo);
+        if((parseInt(bala.style.left)<rect.left) || (parseInt(bala.style.top)<rect.top)){
+            bala.remove();
+            clearInterval(intervalo);
+        }
+    }, 20);
+        
+}
+
+function movimientoDiagonalHaciaDerecha(bala){
+    let rect = pantalla.getBoundingClientRect();
+    let intervalo;
+    
+    intervalo=setInterval(() => {
+        bala.style.top=(parseInt(bala.style.top)-Number(10)) + "px";
+        bala.style.left=(parseInt(bala.style.left)+Number(10)) + "px";
+        golpeoDisparoNave(bala, intervalo);
+        if((parseInt(bala.style.left)>rect.right) || (parseInt(bala.style.top)<rect.top)){
+            bala.remove();
+            clearInterval(intervalo);
+        }
+    }, 20);
+}
+
+function explotarBala(bala, intervalo){
+    bala.style.backgroundImage = "url(../img/bomba/Explosion.png)";  
+    bala.style.zIndex = "4";  
+    clearInterval(intervalo);
+    setTimeout(() => {
+        bala.remove();
+    }, 300);
+}
