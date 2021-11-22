@@ -1,18 +1,4 @@
-
-
-var pantalla = document.getElementsByClassName("pantalla")[0];
 document.body.addEventListener("keyup", comprobanteTeclaLevantar);
-
-
-//Para permitir el movimiento mientras se dispara, y que aunque no registre el keyDown siga moviendose hasta el keyUp
-var movIzqActivo=false;
-var intervaloIzq;
-var movDerActivo=false;
-var intervaloDer;
-var movArrActivo=false;
-var intervaloArr;
-var movAbajActivo=false;
-var intervaloAbaj;
 
 function comprobanteTecla(evento){
     comprobarMovimiento(evento);
@@ -81,7 +67,7 @@ function comprobarBomba(evento){
 }
 
 function movimientoIzq(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];   
     let rect = pantalla.getBoundingClientRect(); //PARA QUE SEA RELATIVO A LA VISTA
     if(!movIzqActivo){ //Para que solo entre una vez con cada primer keydown
         movIzqActivo=true;
@@ -99,7 +85,7 @@ function movimientoIzq(){
 }
 
 function movimientoDerecha(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
     let rect = pantalla.getBoundingClientRect();
     if(!movDerActivo){ //Para que solo entre una vez con cada primer keydown
         movDerActivo=true;
@@ -117,7 +103,7 @@ function movimientoDerecha(){
 }
 
 function movimientoArriba(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
     let rect = pantalla.getBoundingClientRect();
     if(!movArrActivo){ //Para que solo entre una vez
         movArrActivo=true;
@@ -135,7 +121,7 @@ function movimientoArriba(){
 }
 
 function movimientoAbajo(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
     let rect = pantalla.getBoundingClientRect();
     if(!movAbajActivo){ //Para que solo entre una vez
         movAbajActivo=true;

@@ -1,75 +1,9 @@
-var listaHumanos = [];
-
-var seedHumanos;
-var numId = 0;
-var id = () => {
-    numId==100?numId=0:0;
-    numId++;
-    return numId;
-}
-
-
-class Humano{
-    constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div, idHumano){
-        this.velocidad = velocidad;
-        this.fondoHaciaIzquierda = fondoHaciaIzquierda;
-        this.fondoHaciaDerecha = fondoHaciaDerecha;
-        this.aparicion = aparicion;
-        this.div = div;
-        this.idHumano = idHumano;
-        this.intervalo = 0;
-    }
-    darClase(){
-        this.div.classList.add("humano");
-    }
-    obtenerDiv(){
-        return this.div;
-    }
-    obtenerVelocidad(){
-        return 100-this.velocidad;
-    }
-    establecerIntervaloMovimiento(intervalo){
-        this.intervalo=intervalo;
-    }
-}
-
-class Policia{
-    constructor(velocidad, fondoHaciaIzquierda, fondoHaciaDerecha, aparicion, div, idHumano){  
-        this.velocidad = velocidad;
-        this.fondoHaciaIzquierda = fondoHaciaIzquierda;
-        this.fondoHaciaDerecha = fondoHaciaDerecha;
-        this.aparicion = aparicion;
-        this.div = div;
-        this.idHumano = idHumano;
-        this.intervalo = 0;  
-        this.intervaloDisparar = 0;
-    }
-    obtenerDiv(){
-        return this.div;
-    }
-    obtenerVelocidad(){
-        return 100-this.velocidad;
-    }
-    establecerIntervaloMovimiento(intervalo){
-        this.intervalo=intervalo;
-    }
-    darClase(){
-        this.div.classList.add("policia");
-    }
-    disparar(){
-        this.intervaloDisparar = setInterval(() => {
-            generarBalaDisparar(this.div, this.aparicion);
-        }, randomIntFromInterval(800,1200));
-    }
-}
-
-
+/*-----------    PERSONAS (genérico) ---------------*/
 function generacionHumanos(){
     seedHumanos = setInterval(() => {
         comprobarGenerarHumanos();
     }, 1000-((velocidad-1)*10)<=990?(velocidad-1)*10:990); //Para que no sea 0 nunca
 }
-
 
 function comprobarGenerarHumanos(){
     if(listaHumanos.length<velocidad+Number(10)){
@@ -164,14 +98,7 @@ function escapar(humano){
     disminuirPuntuacion()
 }
 
-//otros
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-
-
-//polisia
+/*-----------    POLICIA ---------------*/
 
 function generarBalaDisparar(div, aparacion){
     let bala = document.createElement("div");
@@ -187,7 +114,6 @@ function generarBalaDisparar(div, aparacion){
         bala.classList.add("imagenBalaHaciaIzquierda");
     }
 }
-
 
 function movimientoDiagonalHaciaIzquierda(bala){
     let rect = pantalla.getBoundingClientRect();
@@ -220,3 +146,11 @@ function movimientoDiagonalHaciaDerecha(bala){
     }, 20);
 }
 
+function explotarBala(bala, intervalo){
+    bala.style.backgroundImage = "url(../img/bomba/Explosion.png)";  
+    bala.style.zIndex = "4";  
+    clearInterval(intervalo);
+    setTimeout(() => {
+        bala.remove();
+    }, 300);
+}

@@ -1,9 +1,5 @@
-var numeroBombasEnElAire=0;
-
-
-
 function generarBomba(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
     if(numeroBombasEnElAire<numeroDisparosTotalesDisponibles){
         let bombaCreada = document.createElement("div");
         bombaCreada.classList.add("bomba");
@@ -65,7 +61,7 @@ function comprobarSiMuerto(bomba){
 }
 
 function comprobarChoqueSuelo(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
     let rect = pantalla.getBoundingClientRect();    
     if(parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"))>rect.bottom-100){
         choqueNaveSuelo();
@@ -73,7 +69,7 @@ function comprobarChoqueSuelo(){
     }
 }
 function choqueNaveSuelo(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
     let bombaCreada = document.createElement("div");
     bombaCreada.classList.add("bomba");
     bombaCreada.style.position="absolute";
@@ -85,7 +81,7 @@ function choqueNaveSuelo(){
 }
 
 function golpeoDisparoNave(bala, intervalo){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];   
     let ladoIzquierdoNave = parseInt(cuadradoQueSeMueve.style.left);
     let ladoBottomNave = parseInt(cuadradoQueSeMueve.style.top)+Number(40);
     let ladoRightNave = parseInt(cuadradoQueSeMueve.style.left)+Number(40);
@@ -103,11 +99,3 @@ function golpeoDisparoNave(bala, intervalo){
     }
 }
 
-function explotarBala(bala, intervalo){
-    bala.style.backgroundImage = "url(../img/bomba/Explosion.png)";  
-    bala.style.zIndex = "4";  
-    clearInterval(intervalo);
-    setTimeout(() => {
-        bala.remove();
-    }, 300);
-}

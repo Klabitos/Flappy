@@ -1,23 +1,23 @@
-var velocidad = 1;
-var numeroDisparosTotalesDisponibles = 2;
-document.body.addEventListener("keydown", tutorialCheck);
-
-var comprobanteFinalizacionTutorial=[false,false,false,false,false];
-//Para cambios genericos en barra de Vida
-var numVida = 100;
-//Dificultad EXTREMA
-var botonExtremo = document.getElementById("extremo");
-botonExtremo.addEventListener("click", ()=> {
-    hardcore=true;
-    botonExtremo.innerText="EXTREMO ACTIVO";
-    botonExtremo.classList.add("fondoRojo");
-});
-var hardcore=false;
-
+/*-----------    Listeners ---------------*/
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
 document.body.addEventListener("load", generarTutorial());
 document.body.addEventListener("load", generarNave());
+document.body.addEventListener("keydown", tutorialCheck);
+document.getElementById("extremo").addEventListener("click", activarHardcore);
+document.getElementById("debug").addEventListener("click", explotarNaveGenerarNueva);
+/*----------------------------------------*/
 
+/*-----------    NAVE ---------------*/
+function generarNave(){
+    let nave = document.createElement("div");
+    nave.classList.add("cuadradoPrueba");
+    nave.style.left=window.screen.availWidth/2+"px";
+    nave.style.top=window.screen.availHeight/2+"px";
+    pantalla.append(nave);
+    pantalla.focus();
+}
+
+/*-----------    VIDA ---------------*/
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
     let divCreado;
@@ -34,31 +34,6 @@ function generarBarraVida(){
         }
     }
 }
-function explotarNaveGenerarNueva(){
-    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba");  
-    cuadradoQueSeMueve.style.backgroundImage = "url(../img/bomba/Explosion.png)";    
-    setTimeout(() => {
-        cuadradoQueSeMueve.style.opacity="0.5";
-    }, 200);
-    setTimeout(() => {
-        cuadradoQueSeMueve.style.opacity="0";
-    }, 400);
-    setTimeout(() => {
-        cuadradoQueSeMueve.remove();
-    }, 300);
-    generarNave();
-}
-
-function generarNave(){
-    let nave = document.createElement("div");
-    nave.id="cuadradoPrueba";
-    nave.style.left=window.screen.availWidth/2+"px";
-    nave.style.top=window.screen.availHeight/2+"px";
-    pantalla.append(nave);
-}
-
-
-
 function disminuirVida(){
     let todaLaVidaVerde = document.querySelectorAll(".vidaStandard");
     todaLaVidaVerde[todaLaVidaVerde.length-1].classList.replace("vidaStandard", "vidaPerdida");
@@ -79,6 +54,27 @@ function comprobarDerrota(){
         location.reload(); 
     }
 }
+
+/*-----------    debugger MOVIMIENTO ---------------*/
+function explotarNaveGenerarNueva(){
+    let cuadradoQueSeMueve = document.getElementsByClassName("cuadradoPrueba")[0];  
+    cuadradoQueSeMueve.style.backgroundImage = "url(../img/bomba/Explosion.png)";    
+    setTimeout(() => {
+        cuadradoQueSeMueve.style.opacity="0.5";
+    }, 200);
+    setTimeout(() => {
+        cuadradoQueSeMueve.style.opacity="0";
+    }, 400);
+    setTimeout(() => {
+        cuadradoQueSeMueve.remove();
+        alert("Ahora tienes que hacer click en la pantalla de juego para que la partida funcione correctamente");
+        generarNave();
+        pantalla.focus();
+    }, 300);
+    
+}
+
+/*-----------    VISUAL || STATS---------------*/
 
 function tripleKillAndSo(kills){
     let textoEnPantalla = document.getElementById("kills");
@@ -136,7 +132,15 @@ function disminuirPuntuacion(){
     puntuacionSpan.innerText=puntuacionNumero-Number(50);   
 }
 
-//TUTORIAL //////////////////////////////////////////////////////////////////////////////
+function activarHardcore(){
+    let botonExtremo = document.getElementById("extremo");
+    hardcore=true;
+    botonExtremo.innerText="EXTREMO ACTIVO";
+    botonExtremo.classList.add("fondoRojo");
+    pantalla.focus();
+}
+
+/*-----------    TUTORIAL---------------*/
 function generarTutorial(){
     let divParrafoIntroductorio = document.createElement("div");
     let bienvenidos = document.createElement("h2");
