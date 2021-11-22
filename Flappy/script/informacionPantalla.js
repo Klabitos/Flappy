@@ -16,6 +16,7 @@ var hardcore=false;
 
 document.body.addEventListener("load", generarBarraVida()); // () para que lo haga instant
 document.body.addEventListener("load", generarTutorial());
+document.body.addEventListener("load", generarNave());
 
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
@@ -32,6 +33,28 @@ function generarBarraVida(){
             divCreado.classList.add("primeraVida");
         }
     }
+}
+function explotarNaveGenerarNueva(){
+    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba");  
+    cuadradoQueSeMueve.style.backgroundImage = "url(../img/bomba/Explosion.png)";    
+    setTimeout(() => {
+        cuadradoQueSeMueve.style.opacity="0.5";
+    }, 200);
+    setTimeout(() => {
+        cuadradoQueSeMueve.style.opacity="0";
+    }, 400);
+    setTimeout(() => {
+        cuadradoQueSeMueve.remove();
+    }, 300);
+    generarNave();
+}
+
+function generarNave(){
+    let nave = document.createElement("div");
+    nave.id="cuadradoPrueba";
+    nave.style.left=window.screen.availWidth/2+"px";
+    nave.style.top=window.screen.availHeight/2+"px";
+    pantalla.append(nave);
 }
 
 

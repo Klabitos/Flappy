@@ -15,24 +15,35 @@
     <title>Flappy</title>
 </head>
 <body>
-    <button id="extremo">
-        Dificultad Extrema <br>
-        Máxima Diversión    
-    </button>
-    <div class="cabecera">
-        <h1>Puntuación: <span id="puntuacion">0</span></h1>
-        <h1 id="kills"></h1>
-        <h1 >Velocidad: x<span id="velocidad">1</span></h1>
+    <div class="botones">
+        <h1>Opciones</h1>
+        <button id="extremo" class="boton">
+            Dificultad Extrema <br>
+            Máxima Diversión    
+        </button>
+        <button class="boton" onclick="explotarNaveGenerarNueva();">
+            Debug <br>
+            Posición    
+        </button>
     </div>
-    <div class="pantalla">
-        <div id="cuadradoPrueba"></div>
-    </div>
-    <div class="footer">
-        <span id="textoVidas">Vida: </span>
-        <div id="vidas">
+    <div id="principal">
+        <div class="cabecera">
+            <h1>Puntuación: <span id="puntuacion">0</span></h1>
+            <h1 id="kills"></h1>
+            <h1 >Velocidad: x<span id="velocidad">1</span></h1>
         </div>
-        <h2>Estrellas <br> <span id="estrellas">1</span></h2>
-        <h2>Balas disponibles <br>x<span id="balas">2</span> <span id="balasImagen">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h2>
+        <div class="pantalla">
+        </div>
+        <div class="footer">
+            <span id="textoVidas">Vida: </span>
+            <div id="vidas">
+            </div>
+            <h2>Estrellas <br> <span id="estrellas">1</span></h2>
+            <h2>Balas disponibles <br>x<span id="balas">2</span> <span id="balasImagen">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h2>
+        </div>
+    </div>
+    <div class="stats">
+        <p>:D</p>
     </div>
 </body>
 </html>

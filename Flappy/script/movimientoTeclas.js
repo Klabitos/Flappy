@@ -1,7 +1,5 @@
-//document.body.addEventListener("keydown", comprobanteTecla);
 
 
-var cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
 var pantalla = document.getElementsByClassName("pantalla")[0];
 document.body.addEventListener("keyup", comprobanteTeclaLevantar);
 
@@ -83,14 +81,15 @@ function comprobarBomba(evento){
 }
 
 function movimientoIzq(){
+    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
     let rect = pantalla.getBoundingClientRect(); //PARA QUE SEA RELATIVO A LA VISTA
-    let topVal;
     if(!movIzqActivo){ //Para que solo entre una vez con cada primer keydown
         movIzqActivo=true;
         intervaloIzq=setInterval(() => {
-            topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"),10);
-            if(topVal-15>rect.left){ //Para que no se pase del limite de nuestra pantalla
-                cuadradoQueSeMueve.style.left = (topVal - 20) + "px";
+            if(parseInt(cuadradoQueSeMueve.style.left)<parseInt(rect.left)+Number(20)){ //Para que no se pase del limite de nuestra pantalla
+                cuadradoQueSeMueve.style.left=rect.left+"px";
+            }else{
+                cuadradoQueSeMueve.style.left = (parseInt(cuadradoQueSeMueve.style.left) - 20) + "px"; //Se mueve si no se va a ir fuera
             }
             if(!movIzqActivo){
                 clearInterval(intervaloIzq);
@@ -100,14 +99,15 @@ function movimientoIzq(){
 }
 
 function movimientoDerecha(){
+    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
     let rect = pantalla.getBoundingClientRect();
-    var topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"),10);
     if(!movDerActivo){ //Para que solo entre una vez con cada primer keydown
         movDerActivo=true;
         intervaloDer=setInterval(() => {
-            topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("left"),10);
-            if(topVal+80<rect.right){ //Para que no se pase del limite de nuestra pantalla
-                cuadradoQueSeMueve.style.left = (topVal + 20) + "px";
+            if(parseInt(cuadradoQueSeMueve.style.left)>parseInt(rect.right)-Number(120)){ //Para que no se pase del limite de nuestra pantalla
+                cuadradoQueSeMueve.style.left=rect.right-Number(100)+"px";
+            }else{
+                cuadradoQueSeMueve.style.left = (parseInt(cuadradoQueSeMueve.style.left) + 20) + "px"; //Se mueve si no se va a ir fuera
             }
             if(!movDerActivo){
                 clearInterval(intervaloDer);
@@ -117,14 +117,15 @@ function movimientoDerecha(){
 }
 
 function movimientoArriba(){
+    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
     let rect = pantalla.getBoundingClientRect();
-    var topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"),10);
     if(!movArrActivo){ //Para que solo entre una vez
         movArrActivo=true;
         intervaloArr=setInterval(() => {
-            topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"),10);
-            if(topVal-10>rect.top){ //Para que no se pase del limite de nuestra pantalla
-                cuadradoQueSeMueve.style.top = (topVal - 20) + "px";
+            if(parseInt(cuadradoQueSeMueve.style.top)<parseInt(rect.top)+Number(10)){ //Para que no se pase del limite de nuestra pantalla
+                cuadradoQueSeMueve.style.top=rect.top-Number(5)+"px";
+            }else{
+                cuadradoQueSeMueve.style.top = (parseInt(cuadradoQueSeMueve.style.top) - 20) + "px"; //Se mueve si no se va a ir fuera
             }
             if(!movArrActivo){
                 clearInterval(intervaloArr);
@@ -133,15 +134,16 @@ function movimientoArriba(){
     }
 }
 
-function movimientoAbajo(evento){
+function movimientoAbajo(){
+    let cuadradoQueSeMueve = document.getElementById("cuadradoPrueba"); 
     let rect = pantalla.getBoundingClientRect();
-    var topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"),10);
     if(!movAbajActivo){ //Para que solo entre una vez
         movAbajActivo=true;
         intervaloAbaj=setInterval(() => {
-            topVal = parseInt(window.getComputedStyle(cuadradoQueSeMueve, null).getPropertyValue("top"),10);
-            if(topVal+82<rect.bottom){ //Para que no se pase del limite de nuestra pantalla
-                cuadradoQueSeMueve.style.top = (topVal + 20) + "px";
+            if(parseInt(cuadradoQueSeMueve.style.top)>parseInt(rect.bottom)-Number(130)){ //Para que no se pase del limite de nuestra pantalla
+                cuadradoQueSeMueve.style.top=rect.bottom-Number(80)+"px";
+            }else{
+                cuadradoQueSeMueve.style.top = (parseInt(cuadradoQueSeMueve.style.top) + 20) + "px";
             }
             if(!movAbajActivo){
                 clearInterval(intervaloAbaj);
