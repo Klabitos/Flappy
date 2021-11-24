@@ -67,9 +67,8 @@ function explotarNaveGenerarNueva(){
     }, 400);
     setTimeout(() => {
         cuadradoQueSeMueve.remove();
-        alert("Ahora tienes que hacer click en la pantalla de juego para que la partida funcione correctamente");
         generarNave();
-        pantalla.focus();
+        this.blur();
     }, 300);
     
 }
@@ -137,7 +136,7 @@ function activarHardcore(){
     hardcore=true;
     botonExtremo.innerText="EXTREMO ACTIVO";
     botonExtremo.classList.add("fondoRojo");
-    pantalla.focus();
+    this.blur;
 }
 
 /*-----------    TUTORIAL---------------*/

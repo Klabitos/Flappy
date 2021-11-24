@@ -19,8 +19,7 @@
 <body>
     <div class="botones">
         <h1>Opciones</h1>
-        <h3>Después de pulsar cualquier opción pulse en la pantalla de juego por favor.</h3>
-        <button class="boton" onclick="confirm(`¿Quiere seguir jugando?`)?0:window.close();">
+        <button class="boton" onclick="confirm(`¿Quiere seguir jugando?`)?0:window.close(); this.blur();">
             PAUSE
         </button>
         <button id="extremo" class="boton">
