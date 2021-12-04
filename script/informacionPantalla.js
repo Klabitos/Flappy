@@ -84,16 +84,16 @@ function tripleKillAndSo(kills){
             textoEnPantalla.className="kill";
             break;
         case 2:
-            textoEnPantalla.innerText="DOUBLE Kill!";
+            textoEnPantalla.innerText="Double Kill!";
             textoEnPantalla.className="dobleKill";
             break;
         case 3:
-            textoEnPantalla.innerText="TRIPLE KILL!!!";
+            textoEnPantalla.innerText="TRIPLE KILL!";
             textoEnPantalla.className="tripleKill";
             aumentoVelocidad();
             break;
         case 4:
-            textoEnPantalla.innerText="CUADRAAAAAAA KILL!!!";
+            textoEnPantalla.innerText="¡CUADRA KILL!";
             textoEnPantalla.className="cuadraKill";
             aumentoVelocidad();
             aumentarBalasDisponibles();
@@ -125,7 +125,7 @@ function disminuirPuntuacion(){
     let textoEnPantalla = document.getElementById("kills");
     let puntuacionSpan = document.getElementById("puntuacion");
     let puntuacionNumero = parseInt(puntuacionSpan.innerText);
-    textoEnPantalla.innerText="Escapado :(";
+    textoEnPantalla.innerText="Escapado";
     textoEnPantalla.className="escapado";
     disminuirVida();
     puntuacionSpan.innerText=puntuacionNumero-Number(50);   
