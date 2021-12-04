@@ -71,3 +71,9 @@
 .stats p{
     text-align: center;
 }
+
+.hp{
+    position: relative;
+    top: -50%;
+    font-weight: bold;
+}

@@ -21,12 +21,19 @@ function generarNave(){
 function generarBarraVida(){
     let elementoContenedor = document.getElementById("vidas");
     let divCreado;
+    let h2Creado;
     for(let i=0; i<numVida; i++){
         divCreado=document.createElement("div");
         divCreado.classList.add("vida");
         divCreado.classList.add("vidaStandard");
         divCreado.innerHTML="&nbsp;";
         elementoContenedor.append(divCreado);
+        if(i==numVida/2){
+            h2Creado=document.createElement("p");
+            h2Creado.innerHTML="HP";
+            h2Creado.classList.add("hp");
+            divCreado.append(h2Creado);
+        }
         if(i==numVida-1){
             divCreado.classList.add("ultimaVida");
         }else if(i==0){
